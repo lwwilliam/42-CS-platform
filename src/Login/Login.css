@@ -1,0 +1,35 @@
+.Login {
+	text-align: center;
+	/* border: 3px solid green; */
+	padding-top: 5%;
+  }
+
+.form-group {
+	margin: 10px;
+	padding-top: 20px;
+}
+
+.form-control {
+	width: 400px;
+	height: 40px;
+	/* border: 2px solid rgb(0, 217, 255); */
+	font-family: Lucida Console;
+	font-size: 20px;
+	opacity: 0.7;
+}
+
+.btn {
+	width: 410px;
+	height: 45px;
+	font-family: Lucida Console;
+	font-size: 20px;
+	background-color: #00babc;
+}
+
+button {
+	margin-top: 20px;
+}
+
+img {
+	height: 100px;
+}

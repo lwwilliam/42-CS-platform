@@ -1,55 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
-import logo from './images/42_logo.png';
+import Login from './Login/Login';
+import Home from './Home/Home';
+import About from './About/About';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
 
 function App() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add your authentication logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
-  };
-
   return (
-    <div className="App">
-      <h1><img src={logo} alt="42KL logo" /></h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter your email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Enter your password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </form>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' Component={Login} />
+        <Route path='/home' Component={Home} />
+        <Route path='/about' Component={About} />
+      </Routes>
+    </Router>
   );
 }
 
