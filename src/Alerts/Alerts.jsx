@@ -1,11 +1,14 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
+import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 
 function Alerts() {
   return (
     <div>
       <Navbar />
-      <h1>Alerts</h1>
+        <RightSideContainer>
+        <h1>Alerts</h1>
+        </RightSideContainer>
     </div>
   );
 }
