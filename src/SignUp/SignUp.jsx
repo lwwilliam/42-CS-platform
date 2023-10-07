@@ -15,7 +15,7 @@ function SignUp(){
 		formState: {errors}
 		} = useForm(
 			{ defaultValues: {
-				Club: myArray[len - 2],
+				Club: myArray[len - 1],
 				// Club: "placeholder",
 				Name: "",
 				studentID: "",

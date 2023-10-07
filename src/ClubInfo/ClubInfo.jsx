@@ -12,9 +12,9 @@ function ClubInfo() {
           <div className='club-info'>Clubs</div>
           <div className='empty'>a</div>
           <div className='empty'>a</div>
-          <ClubLink to = "/GDSC-Sunway/SignUp">
+          <ClubLink to = "/SignUp/GDSC-Sunway">
             GDSC Sunway
-          </ClubLink>
+          </ClubLink> 
           <div className='content'>
             Google Developer Student Clubs are university based community groups for students interested in Google developer technologies.<br></br>
             Students from all undergraduate or graduate programs with an interest in growing as a developer are welcome.<br></br>
@@ -22,7 +22,7 @@ function ClubInfo() {
             learning environment and build solutions for local businesses and their community.
           </div>
           <div className='empty'>a</div>
-          <ClubLink to = "/Sunway-University-Chinese-Cultural-Society/SignUp">
+          <ClubLink to = "/SignUp/Sunway-University-Chinese-Cultural-Society">
             Sunway University Chinese Cultural Society
           </ClubLink>
           <div className='content'>
@@ -34,7 +34,7 @@ function ClubInfo() {
             (5) Nurture a team of leaders, strengthen our society from various aspects.<br></br>
           </div>
           <div className='empty'>a</div>
-          <ClubLink to = "/Sun-U-Anime-Club/SignUp">
+          <ClubLink to = "/SignUp/Sun-U-Anime-Club">
             Sun-U Anime Club
           </ClubLink>
           <div className='content'>
@@ -44,7 +44,7 @@ function ClubInfo() {
             backgrounds come together to celebrate the art, storytelling, and culture of Japan.
           </div>
           <div className='empty'>a</div>
-          <ClubLink to = "/Sunway-Music-Society/SignUp">
+          <ClubLink to = "/SignUp/Sunway-Music-Society">
             Sunway Music Society
           </ClubLink>
           <div className='content'>

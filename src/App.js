@@ -10,16 +10,15 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
 function App() {
-  const url = window.location.href;
   return (
     <Router>
       <Routes>
-        <Route path='/' Component={Login} />
-        <Route path='/Feed' Component={Feed} />
-        <Route path='/MyClubs' Component={MyClubs} />
-        <Route path='/Alerts' Component={Alerts} />
-        <Route path='/ClubInfo' Component={ClubInfo} />
-        {url.includes("SignUp") ? <Route path='*' Component={SignUp} /> : null}
+        <Route path='/' element={<Login />} />
+        <Route path='/Feed' element={<Feed />} />
+        <Route path='/MyClubs' element={<MyClubs />} />
+        <Route path='/Alerts' element={<Alerts />} />
+        <Route path='/ClubInfo' element={<ClubInfo />} />
+        <Route path='/SignUp/*' element={<SignUp />} />
       </Routes>
     </Router>
   );
