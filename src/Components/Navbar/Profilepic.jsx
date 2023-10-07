@@ -14,8 +14,8 @@ const ProfileImageContainer = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 200%; /* Adjust the image size */
-  height: 200%;
+  width: 100%; /* Adjust the image size */
+  height: 175%;
   border-radius: 50%; /* Make sure the image stays circular */
   object-fit: cover;
 `;

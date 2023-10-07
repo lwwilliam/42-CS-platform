@@ -7,9 +7,9 @@ export const LeftSideContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 25%;
+  width: 10%;
   height: 100vh;
-  background: #494241;
+  background: #1a1a33;
   padding: 0.2rem calc((100vh - 1000px) / 2);
 `;
 
@@ -25,10 +25,10 @@ export const NavLink = styled(Link)`
   padding: 0 1rem;
   height: 100%;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 1vw;
   cursor: pointer;
   &.active {
-    color: black;
+    color: #8287e0;
   }
 `;
 
@@ -41,23 +41,23 @@ export const NavMenu = styled.div`
 `;
 
 export const RightSideContainer = styled.div`
-  margin-left: 25%; /* Adjust based on the width of the LeftSideContainer */
+  margin-left: 10%; /* Adjust based on the width of the LeftSideContainer */
   padding: 20px; /* Add padding to create space between Navbar and content */
 `;
 
 
 
-  
-  
-  
-  
-  
-  
-  
 
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
