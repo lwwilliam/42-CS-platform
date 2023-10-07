@@ -19,7 +19,6 @@ function App() {
         <Route path='/MyClubs' Component={MyClubs} />
         <Route path='/Alerts' Component={Alerts} />
         <Route path='/ClubInfo' Component={ClubInfo} />
-        {/* <Route path='*' Component={SignUp} /> */}
         {url.includes("SignUp") ? <Route path='*' Component={SignUp} /> : null}
       </Routes>
     </Router>

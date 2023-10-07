@@ -30,7 +30,7 @@ function SignUp(){
 	}
 	return (
 		<div>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form className='form-style' onSubmit={handleSubmit(onSubmit)}>
 				<input type="text"{...register("Club", {disabled: true})} />
 				<br></br>
 				<input type="text"{...register("Name", {required: "Please Fill In This Field"})} placeholder="Name" />
