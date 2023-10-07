@@ -1,8 +1,10 @@
 import React from 'react';
 import './App.css';
 import Login from './Login/Login';
-import Home from './Home/Home';
-import About from './About/About';
+import Feed from './Feed/Feed';
+import MyClubs from './MyClubs/MyClubs';
+import Alerts from './Alerts/Alerts';
+import ClubInfo from './ClubInfo/ClubInfo';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
@@ -11,8 +13,10 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' Component={Login} />
-        <Route path='/home' Component={Home} />
-        <Route path='/about' Component={About} />
+        <Route path='/Feed' Component={Feed} />
+        <Route path='/MyClubs' Component={MyClubs} />
+        <Route path='/Alerts' Component={Alerts} />
+        <Route path='/ClubInfo' Component={ClubInfo} />
       </Routes>
     </Router>
   );

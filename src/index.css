@@ -13,6 +13,7 @@ body {
   background-image: url("./images/42kl_bg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 code {
