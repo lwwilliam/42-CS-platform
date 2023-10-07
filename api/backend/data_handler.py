@@ -21,3 +21,6 @@ def get_ins_data(username):
 
     print(f"Data saved to {output_filename}")
     return output_filename
+
+if __name__ == '__main__':
+    get_ins_data("Sunway_bgs")
