@@ -1,28 +1,32 @@
 import React from "react";
-import { Nav, NavLink, NavMenu }
-	from "./NavbarElements";
+import { LeftSideContainer, Nav, NavLink, NavMenu } from "./NavbarElements";
+import ProfilePicture from "./Profilepic"; // Import the ProfilePicture component
 
 const Navbar = () => {
-	return (
-		<>
-			<Nav>
-				<NavMenu>
-					<NavLink to="/about" activeStyle>
-						About
-					</NavLink>
-					<NavLink to="/contact" activeStyle>
-						Contact Us
-					</NavLink>
-					<NavLink to="/blogs" activeStyle>
-						Blogs
-					</NavLink>
-					<NavLink to="/sign-up" activeStyle>
-						Sign Up
-					</NavLink>
-				</NavMenu>
-			</Nav>
-		</>
-	);
+
+  return (
+    <>
+      <LeftSideContainer>
+        <Nav>
+          <NavMenu>
+			<ProfilePicture />
+            <NavLink to="/MyClubs" activeStyle>
+              My Clubs
+            </NavLink>
+            <NavLink to="/Feed" activeStyle>
+              Feed
+            </NavLink>
+            <NavLink to="/Alerts" activeStyle>
+              Alerts
+            </NavLink>
+            <NavLink to="/ClubInfo" activeStyle>
+              Clubs Info
+            </NavLink>
+          </NavMenu>
+        </Nav>
+      </LeftSideContainer>
+    </>
+  );
 };
 
 export default Navbar;

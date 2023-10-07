@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
-  
-function Home() {
+
+function Feed() {
   return (
     <div>
       <Navbar />
-      <h1>Home</h1>
+      <h1>Your Feed</h1>
     </div>
   );
 }
 
-export default Home;
+export default Feed;
