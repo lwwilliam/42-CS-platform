@@ -21,6 +21,29 @@ function Feed() {
       });
     }, []);
     console.log(data)
+
+    const [shortcode, setStrings] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      // Fetch the list of strings from the Flask backend
+      fetch('http://localhost:5000/api/shortcode')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Set the list of strings in state
+          setStrings(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setLoading(false);
+        });
+    }, []);
     
   return (
     <div>

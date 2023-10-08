@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from backend.data_handler import get_ins_data
 import csv
 from flask_cors import CORS
+import json
 
 app = Flask(__name__)
 CORS(app) 
@@ -30,5 +31,14 @@ def writedata():
 
     return jsonify({"message": "Data written to CSV file."})
 
+@app.route('/api/shortcode')
+def get_shortcode():
+    with open("data.json", "r") as json_file:
+        data = json.load(json_file)
+    sc = [entry["shortcode"] for entry in data]
+    return jsonify({"shortcode": sc})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+    scrapedata()
