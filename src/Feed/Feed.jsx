@@ -63,7 +63,7 @@ function Feed() {
             <InstagramEmbed url={`https://www.instagram.com/p/${edge.node.shortcode}/`} width={800} />
           </div>
         ))}
-      </div>s
+      </div>
       </RightSideContainer>
     </div>
   );
