@@ -1,10 +1,11 @@
 import React from 'react';
-import { useForm } from "react-hook-form"
+import { useForm } from 'react-hook-form';
 import './SignUp.css';
-import { useNavigate as navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function SignUp(){
+	const navigate = useNavigate();
 	const url = window.location.href;
 	let text = url;
 	const myArray = text.split("/");
@@ -23,11 +24,28 @@ function SignUp(){
 				gender: "--select one--",
 			}}
 		);
-	const onSubmit = (data) => console.log(data); navigate("/MyClubs")
 
-	function handleClick(){
-		navigate("/ClubInfo");
-	}
+		const onSubmit = async (data) => {
+			try {
+			  // Send form data to the Flask backend
+			  const response = await fetch('http://localhost:5000/api/writedata', {
+				method: 'POST',
+				headers: {
+				  'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			  });
+		
+			  if (response.ok) {
+				console.log('Form data sent to backend successfully.');
+				navigate("/ClubInfo");
+			  } else {
+				console.error('Failed to send form data to backend.');
+			  }
+			} catch (error) {
+			  console.error('Error sending form data:', error);
+			}
+		  };
 	return (
 		<div>
 			<form className='form-style' onSubmit={handleSubmit(onSubmit)}>
@@ -51,7 +69,7 @@ function SignUp(){
 				<br></br>
 				<input type="submit" />
 				<br></br>
-				<button onClick={handleClick()}>Cancel</button>
+				<button onClick={() => navigate('/ClubInfo')}>Cancel</button>
 			</form>
 		</div>
 	)
