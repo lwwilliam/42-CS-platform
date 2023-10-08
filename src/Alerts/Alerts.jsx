@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
+import './Alerts.css';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 
 function Alerts() {
@@ -7,7 +8,17 @@ function Alerts() {
     <div>
       <Navbar />
         <RightSideContainer>
-        <h1>Alerts</h1>
+        <div className='alerts-header'>Alerts</div>
+        <table width="80%" border="1" bgcolor="#aaaaaa" align='center' style={{marginTop: "6vw"}}>
+          <tr style={{height: "50px"}}>
+            <td width="25%">Club Meeting</td>
+            <td>Meeting at Jeffery Cheah Hall at 3pm 20 October 2023.</td>
+          </tr>
+          <tr style={{height: "50px"}}>
+            <td width="25%">Clube Fees</td>
+            <td>Club fees due, please refer to person in charge for more info.</td>
+          </tr>
+        </table>
         </RightSideContainer>
     </div>
   );

@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { LeftSideContainer, Nav, NavLink, NavMenu } from "./NavbarElements";
 import ProfilePicture from "./Profilepic"; // Import the ProfilePicture component
 
-const Navbar = () => {
+function Navbar() {
 
   return (
     <>
