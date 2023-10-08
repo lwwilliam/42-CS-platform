@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ClubLink = styled(Link)`
 	text-decoration: none;
 	position: static;
-	padding-left: 8px;
+	padding-left: 1.8vw;
 	height: 3vw;
 	margin-left: -1vw;
 	margin-right: -1vw;
