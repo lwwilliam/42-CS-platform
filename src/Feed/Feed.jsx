@@ -3,12 +3,28 @@ import Navbar from '../Components/Navbar';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import "react-slideshow-image/dist/styles.css";
 import "./Feed.css";
+import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 
 function Feed() {
   const [shortcode, setShortcode] = useState(null);
   const [loading, setLoading] = useState(true);
   const [edges, setEdges] = useState([]);
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Make an HTTP GET request to the API
+    axios.get('http://localhost:5000/api/scrapedata')
+      .then(response => {
+        // Update the state with the response data
+        setData(response.data.message);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }, []);
+    console.log(data)
 
   useEffect(() => {
     // Check if data is stored in localStorage
@@ -70,4 +86,3 @@ function Feed() {
 }
 
 export default Feed;
-

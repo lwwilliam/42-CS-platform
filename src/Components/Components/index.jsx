@@ -1,7 +1,16 @@
 import React from "react";
 import { LeftSideContainer, Nav, NavLink, NavMenu } from "./NavbarElements";
 import ProfilePicture from "./Profilepic"; // Import the ProfilePicture component
+import { UserProvider } from './UserContext'; // Import the UserProvider
 
+ReactDOM.render(
+  <React.StrictMode>
+    <UserProvider> {/* Wrap your app with UserProvider */}
+      <App />
+    </UserProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 const Section = ({link}) => {
   console.log(link)
