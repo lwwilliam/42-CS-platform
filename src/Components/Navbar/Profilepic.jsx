@@ -1,33 +1,39 @@
-import React from "react";
-import styled from "styled-components";
-import profileImage from "../../images/jesus.jpg";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const ProfileImageContainer = styled.div`
-  width: 150px; /* Adjust the size of the circular profile pic */
-  height: 150px;
-  border-radius: 50%; /* Make it circular */
-  background: white; /* Background color for the circle */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 80px; /* Add margin to separate it from links */
-`;
+const UserProfile = () => {
+  const [profilePic, setProfilePic] = useState(null);
 
-const ProfileImage = styled.img`
-  width: 100%; /* Adjust the image size */
-  height: 175%;
-  border-radius: 50%; /* Make sure the image stays circular */
-  object-fit: cover;
-`;
+  useEffect(() => {
+    // Define the API endpoint URL
+    const apiUrl = 'https://api.42school.org/v2/users/<>';
 
-const ProfilePicture = () => {
+    // Make a GET request using Axios
+    axios.get(apiUrl)
+      .then(response => {
+        // Handle successful response
+        const data = response.data;
+        // Extract profile picture URL from the API response
+        const picUrl = data.image_url;
+        setProfilePic(picUrl);
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error fetching data:', error);
+      });
+  }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+  if (!profilePic) {
+    return <div>Loading...</div>;
+  }
+
+  // Render the profile picture
   return (
-    <ProfileImageContainer>
-      <ProfileImage src={profileImage} alt="Profile" />
-    </ProfileImageContainer>
+    <div>
+      <h1>User Profile Picture</h1>
+      <img src={profilePic} alt="Profile" />
+    </div>
   );
 };
 
-export default ProfilePicture;
-
-
+export default UserProfile;

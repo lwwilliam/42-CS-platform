@@ -9,7 +9,7 @@ function Navbar() {
       <LeftSideContainer>
         <Nav>
           <NavMenu>
-			<ProfilePicture />
+			      <ProfilePicture />
             <NavLink to="/MyClubs" activeStyle>
               My Clubs
             </NavLink>
