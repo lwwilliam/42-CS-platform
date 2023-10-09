@@ -6,7 +6,7 @@ function Login() {
   const navigate = useNavigate();
 
   const redirFeed = () => {
-    navigate('/Feed');
+    navigate('/ClubInfo');
   };
 
   return (

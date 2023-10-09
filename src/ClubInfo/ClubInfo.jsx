@@ -1,59 +1,54 @@
-import React from 'react';
-import { ClubLink } from './ClubInfoLink';
+import React, {useState, useEffect} from 'react';
+// import { ClubLink } from './ClubInfoLink';
 import Navbar from '../Components/Navbar';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
+import { Accordion } from 'flowbite-react';
+import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel';
+import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle';
+import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent';
+import { useNavigate } from 'react-router-dom';
 import './ClubInfo.css';
+import clubsData from './clubs.json';
+
+console.log(clubsData);
 
 function ClubInfo() {
+  const [clubs, setClubs] = useState([]);
+  const navigate = useNavigate();
+
+  function redirSignUp(path) {
+    navigate('/SignUp/' + path);
+  };
+  
+  useEffect(() => {
+    setClubs(clubsData.Clubs); // Use the imported JSON data directly
+  }, []);
+
+  console.log("Clubs:", clubs);
   return (
     <div>
       <Navbar />
-        <RightSideContainer>
-          <div className='club-info'>Clubs</div>
-          <div className='empty'>a</div>
-          <div className='empty'>a</div>
-          <ClubLink to = "/SignUp/GDSC-Sunway">
-            GDSC Sunway
-          </ClubLink> 
-          <div className='content'>
-            Google Developer Student Clubs are university based community groups for students interested in Google developer technologies.<br></br>
-            Students from all undergraduate or graduate programs with an interest in growing as a developer are welcome.<br></br>
-            By joining a GDSC, students grow their knowledge in a peer-to-peer
-            learning environment and build solutions for local businesses and their community.
-          </div>
-          <div className='empty'>a</div>
-          <ClubLink to = "/SignUp/Sunway-University-Chinese-Cultural-Society">
-            Sunway University Chinese Cultural Society
-          </ClubLink>
-          <div className='content'>
-            Non-sports club at Sunway University that focuses on raising awareness of Chinese culture.<br></br>
-            (1) Inherit the Chinese language and Chinese culture and extend to people of all nationalities.<br></br>
-            (2) Encourage the students, whom are the pillars of society, to utilize their strengths and benefit the country and people.<br></br>
-            (3) Enhance the members' ability of independent thinking and events organization.<br></br>
-            (4) Provide a Chinese-language platform for students to unite and exchange ideas.<br></br>
-            (5) Nurture a team of leaders, strengthen our society from various aspects.<br></br>
-          </div>
-          <div className='empty'>a</div>
-          <ClubLink to = "/SignUp/Sun-U-Anime-Club">
-            Sun-U Anime Club
-          </ClubLink>
-          <div className='content'>
-            The Sunway University Anime Club is a dynamic and diverse group of students who share an
-            unbridled passion for all things anime and manga.<br></br>
-            Our club is a lively hub where students from different
-            backgrounds come together to celebrate the art, storytelling, and culture of Japan.
-          </div>
-          <div className='empty'>a</div>
-          <ClubLink to = "/SignUp/Sunway-Music-Society">
-            Sunway Music Society
-          </ClubLink>
-          <div className='content'>
-            The society welcomes all Sunwayians who loves music and treats music more than just
-            a simple interest for the day.<br></br> Those who are passionate about music
-            and also loves to share their interest with others who share
-            the same love, you are in the right place!
-          </div>
-        </RightSideContainer>
+      <RightSideContainer>
+        <div className='club-header'>Clubs</div>
+        <div style={{marginTop: "4vw"}}></div>
+        <Accordion>
+          {clubs.map((club, index) => (
+            <AccordionPanel key={index}>
+              <AccordionTitle>
+                <div className="text-2xl">{club.Name}</div>
+              </AccordionTitle>
+              <AccordionContent>
+                <div className="text-2xl text-justify bg-gray-500/20 ">{club.Description}</div>
+                <div class="place-items-center text-center p-2">
+                  <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-10 w-28 rounded-full">
+                    Sign up
+                  </button>
+                </div>
+              </AccordionContent>
+            </AccordionPanel>
+          ))}
+        </Accordion>
+      </RightSideContainer>
     </div>
   );
 }
