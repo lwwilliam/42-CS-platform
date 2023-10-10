@@ -9,15 +9,28 @@ import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/Ac
 import { useNavigate } from 'react-router-dom';
 import './ClubInfo.css';
 import clubsData from './clubs.json';
-import { InstagramEmbed } from 'react-social-media-embed';
-
-console.log(clubsData);
+import axios from 'axios';
+// import { InstagramEmbed } from 'react-social-media-embed';
 
 const shortcode = ["test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"];
 
 function ClubInfo() {
   const [clubs, setClubs] = useState([]);
   const navigate = useNavigate();
+  const [info, setInfo] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/clubdata')
+      .then(response => {
+        setInfo(response.data.message);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }, []);
+
+  console.log(info);
 
   function redirSignUp(path) {
     navigate('/SignUp/' + path);
@@ -27,7 +40,6 @@ function ClubInfo() {
     setClubs(clubsData.Category); // Use the imported JSON data directly
   }, []);
 
-  console.log("Clubs:", clubs);
   return (
     <div className='overflow-hidden'>
       <Navbar />
@@ -71,7 +83,8 @@ function ClubInfo() {
           <div className='w-[40%] pl-4 overflow-auto h-[88vh]'>
             {shortcode.map((edge) => (
               <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} />
+                test
+                {/* <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} /> */}
               </div>
             ))}
           </div>

@@ -4,9 +4,27 @@ import csv
 import os
 from flask_cors import CORS
 import json
+from pymongo import MongoClient
+from bson import ObjectId
 
 app = Flask(__name__)
 CORS(app) 
+
+MONGO_URI = 'mongodb+srv://<username>:<password>@<project_name>.sbk43zn.mongodb.net/?retryWrites=true&w=majority'
+
+@app.route('/api/clubdata', methods=['GET'])
+def clubdata():
+    client = MongoClient(MONGO_URI)  # MongoDB connection URL
+    db = client['Club-Info']
+    collection = db['Club-Info']
+    data = list(collection.find({}))
+
+    # Convert ObjectId to string in each document
+    for item in data:
+        item['_id'] = str(item['_id'])  # Convert ObjectId to string
+
+    client.close()  # Close the MongoDB connection when done
+    return jsonify({"message": data})
 
 @app.route('/api/scrapedata', methods=['GET'])
 def scrapedata():
