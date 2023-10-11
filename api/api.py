@@ -10,7 +10,7 @@ from bson import ObjectId
 app = Flask(__name__)
 CORS(app) 
 
-MONGO_URI = 'mongodb+srv://<username>:<password>@<project_name>.sbk43zn.mongodb.net/?retryWrites=true&w=majority'
+MONGO_URI = 'the mongodb link'
 
 @app.route('/api/clubdata', methods=['GET'])
 def clubdata():
