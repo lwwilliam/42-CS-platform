@@ -1,40 +1,42 @@
-// import React, { useEffect, useState } from 'react';
-import React from 'react';
-// import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const UserProfile = () => {
-  // const [profilePic, setProfilePic] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
 
-  // useEffect(() => {
-  //   // Define the API endpoint URL
-  //   const apiUrl = 'https://api.42school.org/v2/users/<>';
+  useEffect(() => {
+    // Make a GET request to get the profile picture URL
+    axios.get('http://localhost:5000/api/user/profilepic') // Adjust the URL as needed
+      .then(response => {
+        // Handle successful response
+        const picUrl = response.data; // Use response.data to get the URL
 
-  //   // Make a GET request using Axios
-  //   axios.get(apiUrl)
-  //     .then(response => {
-  //       // Handle successful response
-  //       const data = response.data;
-  //       // Extract profile picture URL from the API response
-  //       const picUrl = data.image_url;
-  //       setProfilePic(picUrl);
-  //     })
-  //     .catch(error => {
-  //       // Handle error
-  //       console.error('Error fetching data:', error);
-  //     });
-  // }, []); // Empty dependency array ensures the effect runs once after the initial render
+        // Set the profilePic state with the URL
+        setProfilePic(picUrl);
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error fetching profile picture:', error);
+      });
+  }, []);
 
-  // if (!profilePic) {
-  //   return <div>Loading...</div>;
-  // }
+  if (profilePic === null) {
+    return <div>Loading...</div>;
+  }
+  const imgStyle = {
+    borderRadius: '50%', // Use border-radius property to make it round
+    width: '150px', // Adjust the width as needed
+    height: '150px', // Adjust the height as needed
+  };
 
-  // Render the profile picture
   return (
     <div>
-      <h1>User Profile Picture</h1>
-      {/* <img src={profilePic} alt="Profile" /> */}
+      {/* <h1>User Profile Picture</h1> */}
+      <img src={profilePic} alt="Profile" style={imgStyle}/> {/* Use profilePic as the src */}
     </div>
   );
 };
 
 export default UserProfile;
+
+

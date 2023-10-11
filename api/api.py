@@ -165,6 +165,31 @@ def ft_api():
         return "Failed to retrieve API data", 500
     return "Missing code parameter", 400
     
+@app.route('/api/user/profilepic', methods=['GET'])
+def get_profile_pic():
+    json_file_path = './data/me.json'  # Replace with the actual JSON file path
+
+    try:
+        # Open and read the JSON file
+        with open(json_file_path, 'r', encoding='utf-8') as json_file:
+            user_data = json.load(json_file)
+
+            # Check if the 'image' field exists in the JSON data
+            if 'image' in user_data and 'versions' in user_data['image']:
+                versions = user_data['image']['versions']
+
+                # Check if the 'medium' version exists
+                if 'medium' in versions:
+                    medium_image_url = versions['medium']
+                    print("image: ", type(medium_image_url))
+                    return medium_image_url
+
+    except FileNotFoundError:
+        print(f'JSON file not found at path: {json_file_path}')
+    except json.JSONDecodeError as e:
+        print(f'Error decoding JSON: {e}')
+
+    return None  # Return None if the URL is not found
 
 # Endpoint to provide authentication configuration
 @app.route('/api/auth/config', methods=['GET'])
