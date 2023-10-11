@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 import sys
 import requests
 
+from colorama import Fore, Back, Style
+
 sys.path.append('/usr/local/lib/python2.7/site-packages/')
 from requests_oauthlib import OAuth2Session
 
@@ -49,11 +51,30 @@ def clubdata():
     client.close()  # Close the MongoDB connection when done
     return jsonify({"message": data})
 
+
+@app.route('/api/userinfo/', methods=['GET'])
+def userinfo():
+    client = MongoClient("mongodb+srv://"+USERNAME+":"+PASSWORD+"@"+PROJECT_NAME+".sbk43zn.mongodb.net/?retryWrites=true&w=majority")  # MongoDB connection URL
+    db = client['User-Info']
+    collection = db['User-Info']
+    data = list(collection.find({}))
+
+    for item in data:
+        item['_id'] = str(item['_id'])
+
+    client.close()
+    return jsonify({"message": data})
+
+
 @app.route('/api/scrapedata', methods=['GET'])
 def scrapedata():
-    data = get_ins_data("Sunway_bgs")
-    print("data: ", data)
-    return jsonify({"message": data})
+    json = clubdata().get_json();
+    category = json['message'][0]['Category']
+
+    for cat in category:
+        for clubs in cat['Clubs']:
+            data = get_ins_data(clubs['Instagram_username'], clubs['ame'])
+            print("data: ", data)
 
 @app.route('/api/writedata', methods=['POST'])
 def writedata():
@@ -73,20 +94,42 @@ def writedata():
 
     return jsonify({"message": "Data written to CSV file."})
 
-@app.route('/api/shortcode')
-def get_shortcode():
-    directory_path = "./data"  # Replace this with the path to your directory
-    json_files = [f for f in os.listdir(directory_path) if f.endswith('.json')]
+# def shotcode_gen(file)
 
-    if json_files:
-        first_json_file = json_files[0]
-        file_path = os.path.join(directory_path, first_json_file)
+    
 
-        with open(file_path, "r", encoding="utf-8") as json_file:
-            data = json.load(json_file)
-            return jsonify(data)
+@app.route('/api/shortcode/<string:param>/', methods=['GET'])
+def get_shortcode(param):
+    if param == "all":
+        json = clubdata().get_json();
+        category = json['message'][0]['Category']
+        for cat in category:
+            for clubs in cat['Clubs']:
+                json_path = clubs['Instagram_username'] + ".json"
+                directory_path = "./data"  # Replace this with the path to your directory
+                file_path = os.path.join(directory_path, json_path)
+                print("file_path: ", file_path)
     else:
-        return jsonify({"error": "No JSON files found in the specified directory"})
+        json = userinfo().get_json();
+        user = json['message'][0]['Users']
+        for club in user:
+            if club['User_ID'] == param:
+                for joined in club['Joined_club']:
+                    print("joined: ", joined)
+                # print("club: ", club['Username'])
+
+
+    # json_files = [f for f in os.listdir(directory_path) if f.endswith('.json')]
+
+    # if json_files:
+    #     first_json_file = json_files[0]
+    #     file_path = os.path.join(directory_path, first_json_file)
+
+    #     with open(file_path, "r", encoding="utf-8") as json_file:
+    #         data = json.load(json_file)
+    #         return jsonify(data)
+    # else:
+    #     return jsonify({"error": "No JSON files found in the specified directory"})
 
 @app.route('/api/ft')
 def ft_api():

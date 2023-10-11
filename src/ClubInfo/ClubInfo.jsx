@@ -65,6 +65,10 @@ function ClubInfo() {
                         </AccordionTitle>
                         <AccordionContent className='bg-slate-700 text-blue-300'>
                           <div className="text-2xl text-justify">{club.Description}</div>
+                          <div className="text-2xl text-justify">{club.Person_in_charge}</div>
+                          <div className="text-2xl text-justify">{club.Email}</div>
+                          <div className="text-2xl text-justify">{club.Description}</div>
+                          <div className="text-2xl text-justify">{club.Location}</div>
                           <div class="place-items-center text-center p-2">
                             <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[7vw] rounded-lg">
                               Sign up
@@ -81,16 +85,16 @@ function ClubInfo() {
                               <Modal.Body className="overflow-none -ml-[30vw]">
                                 <div>
                                   <p className="leading-loose text-base text-violet-950">
-                                    Person In Charge: Placeholder
+                                    Person In Charge: {club.Person_in_charge}
                                   </p>
                                   <p className="leading-loose text-base text-violet-950">
-                                    H/P Number: 0123456789
+                                    H/P Number: {club.Phone_number}
                                   </p>
                                   <p className="leading-loose text-base text-violet-950">
-                                    Email: placeholder@mail.com
+                                    Email: {club.Email}
                                   </p>
                                   <p className="leading-loose text-base text-violet-950">
-                                    Location: Some Floor Somewhere In Sunway University
+                                    Location: {club.Location}
                                   </p>
                                 </div>
                               </Modal.Body>

@@ -2,7 +2,7 @@ import os
 import json
 from backend.instagram import Instagram
 
-def get_ins_data(username):
+def get_ins_data(username, clubname):
     data_dir = 'data'
 
     # Create the data directory if it doesn't exist
@@ -10,7 +10,7 @@ def get_ins_data(username):
         os.makedirs(data_dir)
 
     # Define the output filename based on the username
-    output_filename = os.path.join(data_dir, f'{username}.json')
+    output_filename = os.path.join(data_dir, f'{clubname}.json')
 
     print("Scraping...")
     scraped_data = Instagram.scrap(username)
@@ -23,4 +23,4 @@ def get_ins_data(username):
     return output_filename
 
 if __name__ == '__main__':
-    get_ins_data("Sunway_bgs")
+    get_ins_data()

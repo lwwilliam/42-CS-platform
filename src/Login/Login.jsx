@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Login.css';
 
 const Login = () => {
   const [authConfig, setAuthConfig] = useState({});
+  const [scrapedata, setScrapedata] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/scrapedata')
+      .then(response => {
+        setScrapedata(response.data.message);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+    }, []);
+  console.log(scrapedata)
   
   useEffect(() => {
     // Fetch the client ID and redirect URI from your backend
@@ -31,7 +44,7 @@ const Login = () => {
   return (
     <div class="grid h-screen place-items-center outline">
       <button onClick={handleLoginWith42} class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 border border-teal-600 rounded w-1/3 h-28" style={{ fontSize: '50px' }}>
-        LOG IN TO 42  
+        LOG IN TO 42
       </button>
     </div>
   );
