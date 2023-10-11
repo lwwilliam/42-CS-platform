@@ -25,6 +25,8 @@ REDIR_URI = os.getenv("REDIRICT_URI")
 USERNAME = os.getenv("USERNAME_1")
 PASSWORD = os.getenv("PASSWORD_1")
 PROJECT_NAME = os.getenv("PROJECT_NAME_1")
+SHORTCODE = []
+
 
 payload = {
     'grant_type': 'client_credentials',
@@ -73,7 +75,7 @@ def scrapedata():
 
     for cat in category:
         for clubs in cat['Clubs']:
-            data = get_ins_data(clubs['Instagram_username'], clubs['ame'])
+            data = get_ins_data(clubs['Instagram_username'], clubs['Name'])
             print("data: ", data)
 
 @app.route('/api/writedata', methods=['POST'])
@@ -94,42 +96,35 @@ def writedata():
 
     return jsonify({"message": "Data written to CSV file."})
 
-# def shotcode_gen(file)
-
-    
+def shotcode_gen(file):
+    with open( "./data/" + file + ".json", 'r') as json_file:
+        data = json.load(json_file)
+        edge = data['edge_owner_to_timeline_media']['edges']
+        for i in range(len(edge)):
+            if i == 5:
+                break
+            SHORTCODE.append(edge[i]['node']['shortcode'])
 
 @app.route('/api/shortcode/<string:param>/', methods=['GET'])
 def get_shortcode(param):
+    SHORTCODE.clear()
     if param == "all":
         json = clubdata().get_json();
         category = json['message'][0]['Category']
         for cat in category:
             for clubs in cat['Clubs']:
-                json_path = clubs['Instagram_username'] + ".json"
-                directory_path = "./data"  # Replace this with the path to your directory
-                file_path = os.path.join(directory_path, json_path)
-                print("file_path: ", file_path)
+                shotcode_gen(clubs['Name'])
+        # print("shortcode: ", SHORTCODE)
     else:
         json = userinfo().get_json();
         user = json['message'][0]['Users']
         for club in user:
             if club['User_ID'] == param:
                 for joined in club['Joined_club']:
-                    print("joined: ", joined)
-                # print("club: ", club['Username'])
-
-
-    # json_files = [f for f in os.listdir(directory_path) if f.endswith('.json')]
-
-    # if json_files:
-    #     first_json_file = json_files[0]
-    #     file_path = os.path.join(directory_path, first_json_file)
-
-    #     with open(file_path, "r", encoding="utf-8") as json_file:
-    #         data = json.load(json_file)
-    #         return jsonify(data)
-    # else:
-    #     return jsonify({"error": "No JSON files found in the specified directory"})
+                    shotcode_gen(joined)
+                # print("shortcode: ", SHORTCODE)
+    # print("shortcode: ", sorted(SHORTCODE))
+    return jsonify({"message": sorted(set(SHORTCODE), reverse=True)})
 
 @app.route('/api/ft')
 def ft_api():

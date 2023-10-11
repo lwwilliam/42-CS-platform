@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './Login.css';
 
 const Login = () => {
   const [authConfig, setAuthConfig] = useState({});
-  const [scrapedata, setScrapedata] = useState([]);
+  // const [scrapedata, setScrapedata] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/scrapedata')
-      .then(response => {
-        setScrapedata(response.data.message);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-    }, []);
-  console.log(scrapedata)
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/api/scrapedata')
+  //     .then(response => {
+  //       setScrapedata(response.data.message);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  //   }, []);
+  // console.log(scrapedata)
   
   useEffect(() => {
     // Fetch the client ID and redirect URI from your backend

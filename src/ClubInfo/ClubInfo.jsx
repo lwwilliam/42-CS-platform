@@ -8,11 +8,7 @@ import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/Acco
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import { InstagramEmbed } from 'react-social-media-embed';
-
-
-const shortcode = ["test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"];
-
+import { InstagramEmbed } from 'react-social-media-embed';
 
 function ClubInfo() {
   const navigate = useNavigate();
@@ -38,6 +34,27 @@ function ClubInfo() {
   // }, []);
 
   const [openModal, setOpenModal] = useState(undefined);
+  const [shortcode, setShortcode] = useState([]);
+  const [shortcode2, setShortcode2] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/shortcode/2')
+      .then(response => {
+        setShortcode(response.data.message);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+  , []);
+
+  useEffect(() => {
+    if (shortcode) {
+      let shortcode2 = shortcode;
+      setShortcode2(shortcode2.slice(0, 10));
+    }
+  }, [shortcode]);
 
   return (
     <div className='overflow-hidden'>
@@ -115,11 +132,10 @@ function ClubInfo() {
             </Accordion>
           </div>
           <div className='w-[40%] pl-4 overflow-auto h-[88vh]'>
-            {shortcode.map((edge) => (
+            {shortcode2.map((edge) => (
               // bg color in className is for visualisation, !!REMOVE WHEN PLACING FEED!!
               <div style={{ display: 'flex', justifyContent: 'center' }} className="bg-slate-500">
-                test
-                {/* <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} /> */}
+                <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} />
               </div>
             ))}
           </div>
