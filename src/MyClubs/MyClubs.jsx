@@ -3,8 +3,34 @@ import Navbar from '../Components/Navbar';
 import './MyClubs.css';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import bgs_logo from '../images/bgs_logo.png';
+// import { async } from 'q';
 
 function MyClubs() {
+  const urlParam = new URLSearchParams(window.location.search);
+  const key = urlParam.get('code');
+  console.log(key);
+
+  const postCode = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/postCode', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(key),
+      });
+      if (response.ok) {
+        console.log('Code sent to backend successfully.');
+      } else {
+        console.error('Failed to send code to backend.');
+      }
+    } catch (error) {
+      console.error('Error sending code:', error);
+    }
+  }
+
+  postCode(key);
+
   const [apiResponse, setApiResponse] = useState('');
 
   const fetchData = async () => {

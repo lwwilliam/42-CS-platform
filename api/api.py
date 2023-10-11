@@ -10,10 +10,15 @@ from oauthlib.oauth2 import BackendApplicationClient
 from dotenv import load_dotenv
 import sys
 import requests
+from requests_oauthlib import OAuth2Session
+from flask import Flask
+from flask_cors import CORS
+
+from colorama import Fore, Back, Style
 
 sys.path.append('/usr/local/lib/python2.7/site-packages/')
-from requests_oauthlib import OAuth2Session
-
+app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 load_dotenv()
 
 SECRET = os.getenv("SECRET")
@@ -88,30 +93,77 @@ def get_shortcode():
     else:
         return jsonify({"error": "No JSON files found in the specified directory"})
 
+def get_42_access_token(client_id, client_secret, redirect_uri, code):
+    # Step 3: Exchange the code for an access token
+    token_url = "https://api.intra.42.fr/oauth/token"
+    token_params = {
+        "grant_type": "authorization_code",
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "code": code,
+        "redirect_uri": redirect_uri,
+    }
+
+    # Make a POST request to exchange the code for an access token
+    token_response = requests.post(token_url, token_params)
+
+    if token_response.status_code == 200:
+        # Parse the response JSON to get the access token
+        token_data = token_response.json()
+        access_token = token_data.get("access_token")
+        return access_token
+    else:
+        print(f"Error exchanging code for access token: {token_response.status_code}")
+        return None
+
+def make_42_api_request(access_token, api_endpoint):
+    # Step 4: Use the access token to make API requests
+    headers = {
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    api_url = f"https://api.intra.42.fr/{api_endpoint}"
+
+    # Make a GET request to the 42 API with the access token
+    api_response = requests.get(api_url, headers=headers)
+
+    if api_response.status_code == 200:
+        # Parse and process the API response
+        data = api_response.json()
+        return data
+    else:
+        print(f"Error making API request: {api_response.status_code}")
+        return None
+    
+@app.route('/api/postCode', methods=['POST'])
+def postCode():
+    global CODE
+    CODE = request.json  # Get the JSON data sent from the frontend
+    print("CODE: ", CODE)
+    # You can return a response to acknowledge the received data
+    return jsonify({"message": "Code received successfully"})
+
+
 @app.route('/api/ft')
 def ft_api():
-    client = BackendApplicationClient(client_id=ID)
-    oauth = OAuth2Session(client=client)
+    client_id = ID  # Replace with your actual client ID
+    client_secret = SECRET  # Replace with your actual client secret
+    redirect_uri = REDIR_URI # Replace with your actual redirect URI
 
-    # Get an access token
-    token = oauth.fetch_token(
-        token_url=URL,
-        client_id=ID,
-        client_secret=SECRET,
-        include_client_id=True
-    )
-
-    # Print the access token
-    print(token)
-    with open("data/token.json", "w") as json_file:
-        json.dump(token, json_file, indent=4)
-    headers = {"Authorization": "Bearer " + token['access_token']}
-    cursus_reaponse = requests.get("https://api.intra.42.fr/v2/cursus", headers=headers)
-    if cursus_reaponse.status_code == 200:
-        cursus_data = cursus_reaponse.json()
-        return jsonify(cursus_data)
-    else:
-        return jsonify({"error": "Something went wrong"}, cursus_reaponse.status_code)
+    # Obtain the code from the query parameters
+    code = CODE
+    print("code: ", code)
+    if code:
+        access_token = get_42_access_token(client_id, client_secret, redirect_uri, code)
+        if access_token:
+            api_endpoint = "/v2/me"  # Replace with the desired API endpoint
+            api_data = make_42_api_request(access_token, api_endpoint)
+            if api_data:
+                with open("./data/me.json", "w") as json_file:
+                    json.dump(api_data, json_file, indent=4)  
+                return jsonify(api_data), 200
+        return "Failed to retrieve API data", 500
+    return "Missing code parameter", 400
     
 
 # Endpoint to provide authentication configuration
@@ -131,3 +183,4 @@ if __name__ == '__main__':
     app.run(debug=True)
     scrapedata()
     get_shortcode()
+    postCode()
