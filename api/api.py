@@ -6,15 +6,38 @@ from flask_cors import CORS
 import json
 from pymongo import MongoClient
 from bson import ObjectId
+from oauthlib.oauth2 import BackendApplicationClient
+from dotenv import load_dotenv
+import sys
+import requests
+
+sys.path.append('/usr/local/lib/python2.7/site-packages/')
+from requests_oauthlib import OAuth2Session
+
+load_dotenv()
+
+SECRET = os.getenv("SECRET")
+ID = os.getenv("ID")
+URL = os.getenv("URL")
+REDIR_URI = os.getenv("REDIRICT_URI")
+USERNAME = os.getenv("USERNAME_1")
+PASSWORD = os.getenv("PASSWORD_1")
+PROJECT_NAME = os.getenv("PROJECT_NAME_1")
+
+payload = {
+    'grant_type': 'client_credentials',
+    'client_id': ID,
+    'client_secret': SECRET
+}
 
 app = Flask(__name__)
 CORS(app) 
 
-MONGO_URI = 'url'
+# MONGO_URI = 'mongodb+srv://${USERNAME}:${PASSWORD}@${PROJECT_NAME}.sbk43zn.mongodb.net/?retryWrites=true&w=majority'
 
 @app.route('/api/clubdata', methods=['GET'])
 def clubdata():
-    client = MongoClient(MONGO_URI)  # MongoDB connection URL
+    client = MongoClient("mongodb+srv://"+USERNAME+":"+PASSWORD+"@"+PROJECT_NAME+".sbk43zn.mongodb.net/?retryWrites=true&w=majority")  # MongoDB connection URL
     db = client['Club-Info']
     collection = db['Club-Info']
     data = list(collection.find({}))
@@ -64,6 +87,45 @@ def get_shortcode():
             return jsonify(data)
     else:
         return jsonify({"error": "No JSON files found in the specified directory"})
+
+@app.route('/api/ft')
+def ft_api():
+    client = BackendApplicationClient(client_id=ID)
+    oauth = OAuth2Session(client=client)
+
+    # Get an access token
+    token = oauth.fetch_token(
+        token_url=URL,
+        client_id=ID,
+        client_secret=SECRET,
+        include_client_id=True
+    )
+
+    # Print the access token
+    print(token)
+    with open("data/token.json", "w") as json_file:
+        json.dump(token, json_file, indent=4)
+    headers = {"Authorization": "Bearer " + token['access_token']}
+    cursus_reaponse = requests.get("https://api.intra.42.fr/v2/cursus", headers=headers)
+    if cursus_reaponse.status_code == 200:
+        cursus_data = cursus_reaponse.json()
+        return jsonify(cursus_data)
+    else:
+        return jsonify({"error": "Something went wrong"}, cursus_reaponse.status_code)
+    
+
+# Endpoint to provide authentication configuration
+@app.route('/api/auth/config', methods=['GET'])
+def get_auth_config():
+    print(REDIR_URI)
+    auth_config = {
+        'clientID': ID,
+        'redirectURI': REDIR_URI,
+    }
+    print("UID: ", ID)
+    print("REDIR_URI: ", REDIR_URI)
+    print(auth_config)
+    return (auth_config)
 
 if __name__ == '__main__':
     app.run(debug=True)
