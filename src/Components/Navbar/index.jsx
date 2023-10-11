@@ -16,9 +16,9 @@ function Navbar() {
             <NavLink to="/Feed" activeStyle>
               Feed
             </NavLink>
-            <NavLink to="/Alerts" activeStyle>
+            {/* <NavLink to="/Alerts" activeStyle>
               Alerts
-            </NavLink>
+            </NavLink> */}
             <NavLink to="/ClubInfo" activeStyle>
               Clubs Info
             </NavLink>
