@@ -10,11 +10,6 @@ from oauthlib.oauth2 import BackendApplicationClient
 from dotenv import load_dotenv
 import sys
 import requests
-from requests_oauthlib import OAuth2Session
-from flask import Flask
-from flask_cors import CORS
-
-from colorama import Fore, Back, Style
 
 sys.path.append('/usr/local/lib/python2.7/site-packages/')
 app = Flask(__name__)
@@ -28,6 +23,8 @@ REDIR_URI = os.getenv("REDIRICT_URI")
 USERNAME = os.getenv("USERNAME_1")
 PASSWORD = os.getenv("PASSWORD_1")
 PROJECT_NAME = os.getenv("PROJECT_NAME_1")
+SHORTCODE = []
+
 
 payload = {
     'grant_type': 'client_credentials',
@@ -54,11 +51,30 @@ def clubdata():
     client.close()  # Close the MongoDB connection when done
     return jsonify({"message": data})
 
+
+@app.route('/api/userinfo/', methods=['GET'])
+def userinfo():
+    client = MongoClient("mongodb+srv://"+USERNAME+":"+PASSWORD+"@"+PROJECT_NAME+".sbk43zn.mongodb.net/?retryWrites=true&w=majority")  # MongoDB connection URL
+    db = client['User-Info']
+    collection = db['User-Info']
+    data = list(collection.find({}))
+
+    for item in data:
+        item['_id'] = str(item['_id'])
+
+    client.close()
+    return jsonify({"message": data})
+
+
 @app.route('/api/scrapedata', methods=['GET'])
 def scrapedata():
-    data = get_ins_data("Sunway_bgs")
-    print("data: ", data)
-    return jsonify({"message": data})
+    json = clubdata().get_json();
+    category = json['message'][0]['Category']
+
+    for cat in category:
+        for clubs in cat['Clubs']:
+            data = get_ins_data(clubs['Instagram_username'], clubs['Name'])
+            print("data: ", data)
 
 @app.route('/api/writedata', methods=['POST'])
 def writedata():
@@ -78,20 +94,35 @@ def writedata():
 
     return jsonify({"message": "Data written to CSV file."})
 
-@app.route('/api/shortcode')
-def get_shortcode():
-    directory_path = "./data"  # Replace this with the path to your directory
-    json_files = [f for f in os.listdir(directory_path) if f.endswith('.json')]
+def shotcode_gen(file):
+    with open( "./data/" + file + ".json", 'r') as json_file:
+        data = json.load(json_file)
+        edge = data['edge_owner_to_timeline_media']['edges']
+        for i in range(len(edge)):
+            if i == 5:
+                break
+            SHORTCODE.append(edge[i]['node']['shortcode'])
 
-    if json_files:
-        first_json_file = json_files[0]
-        file_path = os.path.join(directory_path, first_json_file)
-
-        with open(file_path, "r", encoding="utf-8") as json_file:
-            data = json.load(json_file)
-            return jsonify(data)
+@app.route('/api/shortcode/<string:param>/', methods=['GET'])
+def get_shortcode(param):
+    SHORTCODE.clear()
+    if param == "all":
+        json = clubdata().get_json();
+        category = json['message'][0]['Category']
+        for cat in category:
+            for clubs in cat['Clubs']:
+                shotcode_gen(clubs['Name'])
+        # print("shortcode: ", SHORTCODE)
     else:
-        return jsonify({"error": "No JSON files found in the specified directory"})
+        json = userinfo().get_json();
+        user = json['message'][0]['Users']
+        for club in user:
+            if club['User_ID'] == param:
+                for joined in club['Joined_club']:
+                    shotcode_gen(joined)
+                # print("shortcode: ", SHORTCODE)
+    # print("shortcode: ", sorted(SHORTCODE))
+    return jsonify({"message": sorted(set(SHORTCODE), reverse=True)})
 
 def get_42_access_token(client_id, client_secret, redirect_uri, code):
     # Step 3: Exchange the code for an access token

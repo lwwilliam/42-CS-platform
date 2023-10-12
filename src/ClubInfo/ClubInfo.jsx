@@ -8,11 +8,7 @@ import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/Acco
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import { InstagramEmbed } from 'react-social-media-embed';
-
-
-const shortcode = ["test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"];
-
+import { InstagramEmbed } from 'react-social-media-embed';
 
 function ClubInfo() {
   const navigate = useNavigate();
@@ -38,6 +34,32 @@ function ClubInfo() {
   // }, []);
 
   const [openModal, setOpenModal] = useState(undefined);
+  const [shortcode, setShortcode] = useState([]);
+  const [shortcode2, setShortcode2] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/shortcode/2')
+      .then(response => {
+        setShortcode(response.data.message);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+  , []);
+
+  useEffect(() => {
+    if (shortcode && shortcode.length > 0) {
+      let shortcode2 = shortcode.slice(0, 7);
+      setShortcode2(shortcode2);
+    }
+  }, [shortcode]);
+
+  const [pic, setPic] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [phone, setPhone] = useState(false);
+  const [location, setLocation] = useState(false);
 
   return (
     <div className='overflow-hidden'>
@@ -65,37 +87,40 @@ function ClubInfo() {
                         </AccordionTitle>
                         <AccordionContent className='bg-slate-700 text-blue-300'>
                           <div className="text-2xl text-justify">{club.Description}</div>
+                          <div className="text-2xl text-justify">{club.Person_in_charge}</div>
+                          <div className="text-2xl text-justify">{club.Email}</div>
+                          <div className="text-2xl text-justify">{club.Description}</div>
+                          <div className="text-2xl text-justify">{club.Location}</div>
                           <div class="place-items-center text-center p-2">
                             <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[7vw] rounded-lg">
                               Sign up
                             </button>
                           </div>
                           <div className="ml-[20.9vw]">
-                            <Button onClick={() => setOpenModal('dismissable')} className="bg-blue-500 hover:bg-blue-700 text-white font-bold h-[5vh] w-[7vw]" color='bg-blue-700'>
+                            <Button onClick={() => {setOpenModal('dismissable'); setEmail(club.Email); setPic(club.Person_in_charge); setLocation(club.Location); setPhone(club.Phone_number)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold h-[5vh] w-[7vw]" color='bg-blue-700'>
                               Enquiry
                             </Button>
                             <Modal show={openModal === 'dismissable'} onClose={() => setOpenModal(undefined)} className="bg-opacity-[0.36]">
                               <Modal.Header className="font-mono border-slate-400 divide-x-[21.5vw] divide-transparent">
                                 Contact Information
                               </Modal.Header>
-                              <Modal.Body className="overflow-none -ml-[30vw]">
+                              <Modal.Body className="overflow-none">
                                 <div>
                                   <p className="leading-loose text-base text-violet-950">
-                                    Person In Charge: Placeholder
+                                    Person In Charge: {pic}
+                                  </p>
+                                  <p className="leading-loose text-base text-violet-950"> 
+                                    H/P Number: {phone}
                                   </p>
                                   <p className="leading-loose text-base text-violet-950">
-                                    H/P Number: 0123456789
+                                    Email: {email}
                                   </p>
                                   <p className="leading-loose text-base text-violet-950">
-                                    Email: placeholder@mail.com
-                                  </p>
-                                  <p className="leading-loose text-base text-violet-950">
-                                    Location: Some Floor Somewhere In Sunway University
+                                    Location: {location}
                                   </p>
                                 </div>
                               </Modal.Body>
                               <Modal.Footer className="border-slate-400">
-                                {/* item to copy to be revised if time allows for it */}
                                 <Button onClick={() => {navigator.clipboard.writeText("Email")}}>Copy Email</Button>
                                 <Button onClick={() => {navigator.clipboard.writeText("Number")}}>Copy Number</Button>
                               </Modal.Footer>
@@ -111,11 +136,10 @@ function ClubInfo() {
             </Accordion>
           </div>
           <div className='w-[40%] pl-4 overflow-auto h-[88vh]'>
-            {shortcode.map((edge) => (
+            {shortcode2.map((edge) => (
               // bg color in className is for visualisation, !!REMOVE WHEN PLACING FEED!!
               <div style={{ display: 'flex', justifyContent: 'center' }} className="bg-slate-500">
-                test
-                {/* <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} /> */}
+                <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} />
               </div>
             ))}
           </div>
