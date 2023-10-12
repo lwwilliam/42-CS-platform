@@ -121,8 +121,8 @@ function ClubInfo() {
                                 </div>
                               </Modal.Body>
                               <Modal.Footer className="border-slate-400">
-                                <Button onClick={() => {navigator.clipboard.writeText("Email")}}>Copy Email</Button>
-                                <Button onClick={() => {navigator.clipboard.writeText("Number")}}>Copy Number</Button>
+                                <Button onClick={() => {navigator.clipboard.writeText(email)}}>Copy Email</Button>
+                                <Button onClick={() => {navigator.clipboard.writeText(phone)}}>Copy Number</Button>
                               </Modal.Footer>
                             </Modal>
                           </div>
