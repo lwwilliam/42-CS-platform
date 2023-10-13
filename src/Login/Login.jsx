@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import './Login.css';
 
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+
 const Login = () => {
   const [authConfig, setAuthConfig] = useState({});
   // const [scrapedata, setScrapedata] = useState([]);
@@ -19,7 +21,7 @@ const Login = () => {
   
   useEffect(() => {
     // Fetch the client ID and redirect URI from your backend
-    fetch('http://localhost:5000/api/auth/config')
+    fetch(`${BACKEND_URL}/api/auth/config`)
       .then((response) => response.json())
       .then((data) => setAuthConfig(data))
       .catch((error) => console.error('Error fetching auth config:', error));

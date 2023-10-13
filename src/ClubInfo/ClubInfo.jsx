@@ -10,12 +10,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+
 function ClubInfo() {
   const navigate = useNavigate();
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/clubdata')
+    axios.get(`${BACKEND_URL}/api/clubdata`)
       .then(response => {
         setInfo(response.data.message[0].Category);
       })
@@ -38,7 +40,7 @@ function ClubInfo() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/shortcode/2')
+    axios.get(`${BACKEND_URL}/api/shortcode/2`)
       .then(response => {
         setShortcode(response.data.message);
       })
@@ -87,10 +89,6 @@ function ClubInfo() {
                         </AccordionTitle>
                         <AccordionContent className='bg-slate-700 text-blue-300'>
                           <div className="text-2xl text-justify">{club.Description}</div>
-                          <div className="text-2xl text-justify">{club.Person_in_charge}</div>
-                          <div className="text-2xl text-justify">{club.Email}</div>
-                          <div className="text-2xl text-justify">{club.Description}</div>
-                          <div className="text-2xl text-justify">{club.Location}</div>
                           <div class="place-items-center text-center p-2">
                             <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[7vw] rounded-lg">
                               Sign up

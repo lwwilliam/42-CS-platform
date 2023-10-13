@@ -24,3 +24,5 @@ yarn-error.log*
 
 #backend
 /api/.env
+/src/.env
+.env

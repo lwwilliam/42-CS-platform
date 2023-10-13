@@ -6,12 +6,17 @@ import "./Feed.css";
 import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+
+console.log("BACKEND_URL");
+console.log(BACKEND_URL);
+
 function Feed() {
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/shortcode/all')
+    axios.get(`${BACKEND_URL}/api/shortcode/all`)
       .then(response => {
         setShortcode(response.data.message);
       })
