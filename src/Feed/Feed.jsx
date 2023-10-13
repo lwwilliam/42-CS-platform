@@ -8,9 +8,6 @@ import { InstagramEmbed } from 'react-social-media-embed';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
-console.log("BACKEND_URL");
-console.log(BACKEND_URL);
-
 function Feed() {
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
