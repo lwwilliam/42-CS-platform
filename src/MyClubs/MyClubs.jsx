@@ -4,6 +4,8 @@ import './MyClubs.css';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
 
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+
 function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
   const key = urlParam.get('code');
@@ -11,7 +13,7 @@ function MyClubs() {
 
   const postCode = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/postCode', {
+      const response = await fetch(`${BACKEND_URL}/api/postCode`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
