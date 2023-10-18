@@ -3,6 +3,7 @@ import Navbar from '../Components/Navbar';
 import './MyClubs.css';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
+import axios from 'axios';
 
 const BACKEND_URL = 'http://localhost:5000';
 
@@ -11,7 +12,12 @@ function MyClubs() {
   const key = urlParam.get('code');
   console.log(key);
 
-  const [path, setPath] = useState([]);
+  // const [path, setPath] = useState([]);
+  const [joinedClubsinfo, setJoinedClubsinfo] = useState({
+    clubname: [],
+    description: [],
+    redir_link: []
+  });
 
   useEffect(() => {
     // Define the postCode function inside the useEffect
@@ -35,10 +41,23 @@ function MyClubs() {
     };
 
     postCode(key);
+    
+    // let pathArr = window.location.href.split("/");
+    // setPath(pathArr[0]);
 
-    let pathArr = window.location.href.split("/");
-    setPath(pathArr[0]);
   }, [key]);
+
+  useEffect(() => {
+    axios.get(`${BACKEND_URL}/api/joined_clubsinfo/yalee`)
+      .then(response => {
+        setJoinedClubsinfo(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });  
+  }, []);
+
+  console.log(joinedClubsinfo);
 
   return (
     <div>
@@ -46,32 +65,22 @@ function MyClubs() {
       <RightSideContainer>
         <div className='club-header'>My Clubs</div>
         <div className='flex h-[4vw] bg-transparent'></div>
-        <div className="inline-flex">
-          <Card className="max-w-md shadow-2xl shadow-indigo-800 border-indigo-800">
-            <h4 className="text-3xl font-bold font-serif tracking-wide text-black ml-[0vw]">
-                Placeholder Club
-            </h4>
-            <p className="text-lg font-semibold text-slate-700 ml-[0vw]">
-                Placeholder Description that is very long like how long is this i guess it's just this long i wonder why, how long does this keep going for i wonder hey its still going is it overflowing i wonder ?
-            </p>
-            <Button gradientDuoTone="purpleToBlue" className="max-w-[10vw] ml-[4.9vw]" href={path + "ClubInfo"}>
-              Placeholder
-            </Button>
-          </Card>
-        </div>
-        <div className='inline-flex w-[3vw] bg-transparent'></div>
-        <div className="inline-flex">
-          <Card className="max-w-md shadow-2xl shadow-indigo-800 border-indigo-800">
-            <h4 className="text-3xl font-bold font-serif tracking-wide text-black ml-[0vw]">
-                Placeholder Club
-            </h4>
-            <p className="text-lg font-semibold text-slate-700 ml-[0vw]">
-                Placeholder Description that is very long like how long is this i guess it's just this long i wonder why, how long does this keep going for i wonder hey its still going is it overflowing i wonder ?
-            </p>
-            <Button gradientDuoTone="purpleToBlue" className="max-w-[10vw] ml-[4.9vw]" href="https://youtu.be/dQw4w9WgXcQ?si=3O4p5wwY8Xz19B0V" target="_blank">
-              Placeholder
-            </Button>
-          </Card>
+        <div className='flex flex-row flex-wrap'>
+          {joinedClubsinfo.clubname.map((clubname, index) => (
+            <div key={index} className='ml-10 mt-10'>
+              <Card className="max-w-md shadow-2xl shadow-indigo-800 border-indigo-800 h-96">
+                  <h4 className="text-2xl font-bold font-serif tracking-wide text-black ml-[0vw] text-center">
+                    {clubname}
+                  </h4>
+                  <p className="text-lg font-semibold text-slate-700 ml-[0vw] h-52">
+                    {joinedClubsinfo.description[index]}
+                  </p>
+                  <Button gradientDuoTone="purpleToBlue" className="w-1/3 bottom-0 mx-32" href={joinedClubsinfo.redir_link[index]} target="_blank">
+                    Link
+                  </Button>
+              </Card>
+            </div>
+          ))}
         </div>
       </RightSideContainer>
     </div>

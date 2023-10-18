@@ -34,7 +34,7 @@ function ClubInfo() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/shortcode/2')
+    axios.get('http://localhost:5000/api/shortcode/all')
       .then(response => {
         setShortcode(response.data.message);
       })

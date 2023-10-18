@@ -11,7 +11,7 @@ function Feed() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/shortcode/all')
+    axios.get('http://localhost:5000/api/shortcode/yalee')
       .then(response => {
         setShortcode(response.data.message);
       })
@@ -25,7 +25,7 @@ function Feed() {
   useEffect(() => {
     if (shortcode) {
       let shortcode2 = shortcode;
-      setShortcode2(shortcode2.slice(0, 10));
+      setShortcode2(shortcode2.slice(0, 8));
     }
   }, [shortcode]);
 
