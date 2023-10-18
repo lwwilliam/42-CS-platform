@@ -29,10 +29,6 @@ function ClubInfo() {
     navigate('/SignUp/' + path);
   };
 
-  // useEffect(() => {
-  //   setClubs(clubsData.Category); // Use the imported JSON data directly
-  // }, []);
-
   const [openModal, setOpenModal] = useState(undefined);
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
@@ -87,10 +83,6 @@ function ClubInfo() {
                         </AccordionTitle>
                         <AccordionContent className='bg-slate-700 text-blue-300'>
                           <div className="text-2xl text-justify">{club.Description}</div>
-                          <div className="text-2xl text-justify">{club.Person_in_charge}</div>
-                          <div className="text-2xl text-justify">{club.Email}</div>
-                          <div className="text-2xl text-justify">{club.Description}</div>
-                          <div className="text-2xl text-justify">{club.Location}</div>
                           <div class="place-items-center text-center p-2">
                             <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[7vw] rounded-lg">
                               Sign up

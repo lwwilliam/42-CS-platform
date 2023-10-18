@@ -16,6 +16,25 @@ const Login = () => {
   //     });
   //   }, []);
   // console.log(scrapedata)
+
+  // const post_to_db = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3000/api/toDB', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(key),
+  //     });
+  //     if (response.ok) {
+  //       console.log('Code sent to backend successfully.');
+  //     } else {
+  //       console.error('Failed to send code to backend.');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error sending code:', error);
+  //   }
+  // }
   
   useEffect(() => {
     // Fetch the client ID and redirect URI from your backend
@@ -31,7 +50,7 @@ const Login = () => {
       return;
     }
 
-    const { clientID, redirectURI } = authConfig;
+    const { clientID, redirectURI} = authConfig;
     const scopes = 'public'; // Specify the scopes you need
 
     // Construct the authorization URL

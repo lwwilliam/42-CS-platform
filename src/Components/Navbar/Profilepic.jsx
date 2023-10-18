@@ -6,12 +6,11 @@ const UserProfile = () => {
 
   useEffect(() => {
     // Make a GET request to get the profile picture URL
-    axios.get('http://localhost:5000/api/user/profilepic') // Adjust the URL as needed
+    axios.get('http://localhost:5000/api/user/profilepic/hyun-zhe') // Adjust the URL as needed
       .then(response => {
         // Handle successful response
-        const picUrl = response.data; // Use response.data to get the URL
+        const picUrl = response.data['message']; // Use response.data to get the URL
 
-        // Set the profilePic state with the URL
         setProfilePic(picUrl);
       })
       .catch(error => {
@@ -20,8 +19,10 @@ const UserProfile = () => {
       });
   }, []);
 
+  console.log(profilePic);
+
   if (profilePic === null) {
-    return <div>Loading...</div>;
+    return <div className='font-white'>Loading...</div>;
   }
   const imgStyle = {
     borderRadius: '50%', // Use border-radius property to make it round

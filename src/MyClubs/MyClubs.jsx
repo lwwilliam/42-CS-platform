@@ -4,38 +4,41 @@ import './MyClubs.css';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
 
+const BACKEND_URL = 'http://localhost:5000';
+
 function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
   const key = urlParam.get('code');
   console.log(key);
 
-  const postCode = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/postCode', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(key),
-      });
-      if (response.ok) {
-        console.log('Code sent to backend successfully.');
-      } else {
-        console.error('Failed to send code to backend.');
-      }
-    } catch (error) {
-      console.error('Error sending code:', error);
-    }
-  }
-
-  postCode(key);
-
   const [path, setPath] = useState([]);
 
   useEffect(() => {
-    let pathArr = window.location.href.split("/")
-    setPath(pathArr[0])
-  }, []);
+    // Define the postCode function inside the useEffect
+    const postCode = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/postCode`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(key),
+        });
+        if (response.ok) {
+          console.log('Code sent to the backend successfully.');
+        } else {
+          console.error('Failed to send code to the backend.');
+        }
+      } catch (error) {
+        console.error('Error sending code:', error);
+      }
+    };
+
+    postCode(key);
+
+    let pathArr = window.location.href.split("/");
+    setPath(pathArr[0]);
+  }, [key]);
 
   return (
     <div>
