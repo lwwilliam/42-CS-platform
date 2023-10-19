@@ -10,12 +10,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+
 function ClubInfo() {
   const navigate = useNavigate();
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    axios.get('https://42xsunwayclub.vercel.app/api/clubdata')
+    axios.get(`${BACKEND_URL}/api/clubdata`)
       .then(response => {
         setInfo(response.data.message[0].Category);
       })
@@ -34,7 +36,7 @@ function ClubInfo() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('https://42xsunwayclub.vercel.app/api/shortcode/all')
+    axios.get(`${BACKEND_URL}/api/shortcode/all`)
       .then(response => {
         setShortcode(response.data.message);
       })

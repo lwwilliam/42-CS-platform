@@ -5,14 +5,18 @@ import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
 import axios from 'axios';
 
-const BACKEND_URL = 'https://42xsunwayclub.vercel.app';
+const BACKEND_URL = process.env.REACT_APP_API_URL;
 
 function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
-  const key = urlParam.get('code');
-  console.log(key);
+  const key_code = urlParam.get('code');
 
-  // const [path, setPath] = useState([]);
+  useEffect(() => {
+    localStorage.setItem('key', key_code);
+  }, [key_code]);
+
+  const key = localStorage.getItem('key');
+  
   const [joinedClubsinfo, setJoinedClubsinfo] = useState({
     clubname: [],
     description: [],

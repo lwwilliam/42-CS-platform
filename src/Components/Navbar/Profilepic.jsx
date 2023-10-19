@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = process.env.REACT_APP_API_URL;
+
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() => {
     // Make a GET request to get the profile picture URL
-    axios.get('https://42xsunwayclub.vercel.app/api/user/profilepic/yalee') // Adjust the URL as needed
+    axios.get(`${BACKEND_URL}/api/user/profilepic/yalee`) // Adjust the URL as needed
       .then(response => {
         // Handle successful response
         const picUrl = response.data['message']; // Use response.data to get the URL
