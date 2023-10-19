@@ -19,7 +19,7 @@ const Login = () => {
   
   useEffect(() => {
     // Fetch the client ID and redirect URI from your backend
-    fetch('http://localhost:5000/api/auth/config')
+    fetch('https://42xsunwayclub.vercel.app/api/auth/config')
       .then((response) => response.json())
       .then((data) => setAuthConfig(data))
       .catch((error) => console.error('Error fetching auth config:', error));

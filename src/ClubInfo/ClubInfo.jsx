@@ -15,7 +15,7 @@ function ClubInfo() {
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/clubdata')
+    axios.get('https://42xsunwayclub.vercel.app/api/clubdata')
       .then(response => {
         setInfo(response.data.message[0].Category);
       })
@@ -34,7 +34,7 @@ function ClubInfo() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/shortcode/all')
+    axios.get('https://42xsunwayclub.vercel.app/api/shortcode/all')
       .then(response => {
         setShortcode(response.data.message);
       })

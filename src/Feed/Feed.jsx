@@ -11,7 +11,7 @@ function Feed() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/shortcode/yalee')
+    axios.get('https://42xsunwayclub.vercel.app/api/shortcode/yalee')
       .then(response => {
         setShortcode(response.data.message);
       })

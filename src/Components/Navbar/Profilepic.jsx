@@ -6,7 +6,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     // Make a GET request to get the profile picture URL
-    axios.get('http://localhost:5000/api/user/profilepic/yalee') // Adjust the URL as needed
+    axios.get('https://42xsunwayclub.vercel.app/api/user/profilepic/yalee') // Adjust the URL as needed
       .then(response => {
         // Handle successful response
         const picUrl = response.data['message']; // Use response.data to get the URL

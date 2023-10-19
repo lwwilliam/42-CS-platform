@@ -5,7 +5,7 @@ import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
 import axios from 'axios';
 
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = 'https://42xsunwayclub.vercel.app';
 
 function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
