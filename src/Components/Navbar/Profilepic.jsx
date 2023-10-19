@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_API_URL;
-
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() => {
     // Make a GET request to get the profile picture URL
-    axios.get(`${BACKEND_URL}/api/user/profilepic`) // Adjust the URL as needed
+    axios.get('https://42xsunwayclub.vercel.app/api/user/profilepic/yalee') // Adjust the URL as needed
       .then(response => {
         // Handle successful response
-        const picUrl = response.data; // Use response.data to get the URL
+        const picUrl = response.data['message']; // Use response.data to get the URL
 
-        // Set the profilePic state with the URL
         setProfilePic(picUrl);
       })
       .catch(error => {
@@ -22,8 +19,10 @@ const UserProfile = () => {
       });
   }, []);
 
+  console.log(profilePic);
+
   if (profilePic === null) {
-    return <div>Loading...</div>;
+    return <div className='font-white'>Loading...</div>;
   }
   const imgStyle = {
     borderRadius: '50%', // Use border-radius property to make it round

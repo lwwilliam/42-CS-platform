@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import './Login.css';
 
-const BACKEND_URL = process.env.REACT_APP_API_URL;
-
 const Login = () => {
   const [authConfig, setAuthConfig] = useState({});
   // const [scrapedata, setScrapedata] = useState([]);
@@ -21,7 +19,7 @@ const Login = () => {
   
   useEffect(() => {
     // Fetch the client ID and redirect URI from your backend
-    fetch(`${BACKEND_URL}/api/auth/config`)
+    fetch('https://42xsunwayclub.vercel.app/api/auth/config')
       .then((response) => response.json())
       .then((data) => setAuthConfig(data))
       .catch((error) => console.error('Error fetching auth config:', error));
@@ -33,7 +31,7 @@ const Login = () => {
       return;
     }
 
-    const { clientID, redirectURI } = authConfig;
+    const { clientID, redirectURI} = authConfig;
     const scopes = 'public'; // Specify the scopes you need
 
     // Construct the authorization URL

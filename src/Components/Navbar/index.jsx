@@ -24,10 +24,6 @@ function Navbar() {
             </NavLink>
           </NavMenu>
         </Nav>
-        <div className='pt-20'/>
-        <div className='text-center bg-white text-rose-900'>
-          SITE IS UNDER CONSTRUCTION
-        </div>
       </LeftSideContainer>
     </>
   );

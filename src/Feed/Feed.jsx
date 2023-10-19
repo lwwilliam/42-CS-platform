@@ -6,14 +6,12 @@ import "./Feed.css";
 import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 
-const BACKEND_URL = process.env.REACT_APP_API_URL;
-
 function Feed() {
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/shortcode/all`)
+    axios.get('https://42xsunwayclub.vercel.app/api/shortcode/yalee')
       .then(response => {
         setShortcode(response.data.message);
       })
@@ -27,7 +25,7 @@ function Feed() {
   useEffect(() => {
     if (shortcode) {
       let shortcode2 = shortcode;
-      setShortcode2(shortcode2.slice(0, 10));
+      setShortcode2(shortcode2.slice(0, 8));
     }
   }, [shortcode]);
 
