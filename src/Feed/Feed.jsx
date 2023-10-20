@@ -13,7 +13,8 @@ function Feed() {
   const [shortcode2, setShortcode2] = useState([]);
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/shortcode/yalee`)
+    const id = localStorage.getItem('id');
+    axios.get(`${BACKEND_URL}/api/shortcode/${id}`)
       .then(response => {
         setShortcode(response.data.message);
       })

@@ -6,9 +6,10 @@ const BACKEND_URL = process.env.REACT_APP_API_URL;
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
 
+  const id = localStorage.getItem('id');
   useEffect(() => {
     // Make a GET request to get the profile picture URL
-    axios.get(`${BACKEND_URL}/api/user/profilepic/yalee`) // Adjust the URL as needed
+    axios.get(`${BACKEND_URL}/api/user/profilepic/${id}`) // Adjust the URL as needed
       .then(response => {
         // Handle successful response
         const picUrl = response.data['message']; // Use response.data to get the URL
@@ -19,7 +20,7 @@ const UserProfile = () => {
         // Handle error
         console.error('Error fetching profile picture:', error);
       });
-  }, []);
+  }, [id]);
 
   console.log(profilePic);
 

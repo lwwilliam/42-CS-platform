@@ -18,42 +18,42 @@ function ClubInfo() {
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/clubdata`)
-      .then(response => {
-        setInfo(response.data.message[0].Category);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      }
+    .then(response => {
+      setInfo(response.data.message[0].Category);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    }
     );
   }, []);
   
   function redirSignUp(path) {
     navigate('/SignUp/' + path);
   };
-
+  
   const [openModal, setOpenModal] = useState(undefined);
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
-
+  
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/shortcode/all`)
-      .then(response => {
-        setShortcode(response.data.message);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      }
+    .then(response => {
+      setShortcode(response.data.message);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    }
     );
   }
   , []);
-
+  
   useEffect(() => {
     if (shortcode && shortcode.length > 0) {
       let shortcode2 = shortcode.slice(0, 7);
       setShortcode2(shortcode2);
     }
   }, [shortcode]);
-
+  
   const [pic, setPic] = useState(false);
   const [email, setEmail] = useState(false);
   const [phone, setPhone] = useState(false);

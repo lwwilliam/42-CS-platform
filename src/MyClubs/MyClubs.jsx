@@ -9,14 +9,8 @@ const BACKEND_URL = process.env.REACT_APP_API_URL;
 
 function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
-  const key_code = urlParam.get('code');
-
-  useEffect(() => {
-    localStorage.setItem('key', key_code);
-  }, [key_code]);
-
-  const key = localStorage.getItem('key');
-  
+  const key = urlParam.get('code');
+  const [objid, setObjid] = useState('');
   const [joinedClubsinfo, setJoinedClubsinfo] = useState({
     clubname: [],
     description: [],
@@ -36,30 +30,41 @@ function MyClubs() {
         });
         if (response.ok) {
           console.log('Code sent to the backend successfully.');
+          const data = await response.json();
+          setObjid(data.objectid);
+          if (data.objectid) {
+            localStorage.setItem('id', data.objectid);
+            // Store the objectid in local storage
+          }
         } else {
           console.error('Failed to send code to the backend.');
         }
       } catch (error) {
         console.error('Error sending code:', error);
       }
+      // console.log("objid is:", objid)
     };
 
-    postCode(key);
+    // console.log("key is:", key)
     
-    // let pathArr = window.location.href.split("/");
-    // setPath(pathArr[0]);
-
-  }, [key]);
-
+    postCode();
+  }, [key, objid]);
+  
+  
+  const id = localStorage.getItem('id');
+  // console.log("id is:", id)
+  
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/joined_clubsinfo/yalee`)
+    // console.log("the id of user is:")
+    // console.log(id)
+    axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
       .then(response => {
         setJoinedClubsinfo(response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });  
-  }, []);
+  }, [id]);
 
   console.log(joinedClubsinfo);
 
