@@ -7,9 +7,10 @@ function Navbar() {
   return (
     <>
       <LeftSideContainer>
+        <ProfilePicture />
+        <div className='h-[5vh] bg-transparent'></div>
         <Nav>
           <NavMenu>
-			      <ProfilePicture />
             <NavLink to="/MyClubs" activeStyle>
               My Clubs
             </NavLink>
