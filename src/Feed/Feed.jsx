@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
+import Loading from '../Components/LoadingOverlay';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import "react-slideshow-image/dist/styles.css";
 import "./Feed.css";
@@ -11,8 +12,10 @@ const BACKEND_URL = process.env.REACT_APP_API_URL;
 function Feed() {
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setTimeout(() => setLoading(false), 2000)
     const id = localStorage.getItem('id');
     axios.get(`${BACKEND_URL}/api/shortcode/${id}`)
       .then(response => {
@@ -35,6 +38,7 @@ function Feed() {
 
   return (
     <div>
+      {loading && <Loading/>}
       <Navbar />
       <RightSideContainer>
         <div className='feed-header'>Feed</div>

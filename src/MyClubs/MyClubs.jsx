@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
+import Loading from '../Components/LoadingOverlay';
 import './MyClubs.css';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
@@ -11,6 +12,7 @@ function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
   const key = urlParam.get('code');
   const [objid, setObjid] = useState('');
+  const [loading, setLoading] = useState(true);
   const [joinedClubsinfo, setJoinedClubsinfo] = useState({
     clubname: [],
     description: [],
@@ -42,34 +44,28 @@ function MyClubs() {
       } catch (error) {
         console.error('Error sending code:', error);
       }
-      // console.log("objid is:", objid)
     };
 
-    // console.log("key is:", key)
-    
     postCode();
   }, [key, objid]);
-  
-  
+
   const id = localStorage.getItem('id');
-  // console.log("id is:", id)
-  
+
   useEffect(() => {
-    // console.log("the id of user is:")
-    // console.log(id)
+    setTimeout(() => setLoading(false), 2000)
     axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
       .then(response => {
         setJoinedClubsinfo(response.data);
+        console.log(response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });  
   }, [id]);
 
-  console.log(joinedClubsinfo);
-
   return (
     <div>
+      {loading && <Loading/>}
       <Navbar />
       <RightSideContainer>
         <div className='club-header'>My Clubs</div>

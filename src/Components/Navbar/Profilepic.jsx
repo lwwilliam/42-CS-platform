@@ -27,11 +27,6 @@ const UserProfile = () => {
   if (profilePic === null) {
     return <div className='font-white'>Loading...</div>;
   }
-  // const imgStyle = {
-  //   borderRadius: '50%', // Use border-radius property to make it round
-  //   width: '150px', // Adjust the width as needed
-  //   height: '150px', // Adjust the height as needed
-  // };
 
   return (
     <div className='rounded-full w-[8vw] h-[8vw] bg-gray-300'>
