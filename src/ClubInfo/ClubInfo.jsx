@@ -50,7 +50,7 @@ function ClubInfo() {
 
   useEffect(() => {
     if (shortcode && shortcode.length > 0) {
-      let shortcode2 = shortcode.slice(0, 7);
+      let shortcode2 = shortcode.slice(0, 6);
       setShortcode2(shortcode2);
     }
   }, [shortcode]);
