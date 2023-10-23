@@ -7,9 +7,10 @@ function Navbar() {
   return (
     <>
       <LeftSideContainer>
+        <ProfilePicture />
+        <div className='h-[5vh] bg-transparent'></div>
         <Nav>
           <NavMenu>
-			      <ProfilePicture />
             <NavLink to="/MyClubs" activeStyle>
               My Clubs
             </NavLink>
@@ -24,10 +25,6 @@ function Navbar() {
             </NavLink>
           </NavMenu>
         </Nav>
-        <div className='pt-20'/>
-        <div className='text-center bg-white text-rose-900'>
-          SITE IS UNDER CONSTRUCTION
-        </div>
       </LeftSideContainer>
     </>
   );

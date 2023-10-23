@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 // import { ClubLink } from './ClubInfoLink';
 import Navbar from '../Components/Navbar';
+import Loading from '../Components/LoadingOverlay';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Accordion, Button, Modal } from 'flowbite-react';
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel';
@@ -15,41 +16,37 @@ const BACKEND_URL = process.env.REACT_APP_API_URL;
 function ClubInfo() {
   const navigate = useNavigate();
   const [info, setInfo] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/clubdata`)
-      .then(response => {
-        setInfo(response.data.message[0].Category);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      }
-    );
-  }, []);
-  
-  function redirSignUp(path) {
-    navigate('/SignUp/' + path);
-  };
-
-  // useEffect(() => {
-  //   setClubs(clubsData.Category); // Use the imported JSON data directly
-  // }, []);
-
   const [openModal, setOpenModal] = useState(undefined);
   const [shortcode, setShortcode] = useState([]);
   const [shortcode2, setShortcode2] = useState([]);
+  const [pic, setPic] = useState(false);
+  const [email, setEmail] = useState(false);
+  const [phone, setPhone] = useState(false);
+  const [location, setLocation] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/shortcode/2`)
-      .then(response => {
-        setShortcode(response.data.message);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      }
+    axios.get(`${BACKEND_URL}/api/clubdata`)
+    .then(response => {
+      setInfo(response.data.message[0].Category);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    }
     );
-  }
-  , []);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000)
+    axios.get(`${BACKEND_URL}/api/shortcode/all`)
+    .then(response => {
+      setShortcode(response.data.message);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    }
+    );
+  }, []);
 
   useEffect(() => {
     if (shortcode && shortcode.length > 0) {
@@ -58,12 +55,13 @@ function ClubInfo() {
     }
   }, [shortcode]);
 
-  const [pic, setPic] = useState(false);
-  const [email, setEmail] = useState(false);
-  const [phone, setPhone] = useState(false);
-  const [location, setLocation] = useState(false);
+  function redirSignUp(path) {
+    navigate('/SignUp/' + path);
+  };
 
   return (
+    <div>
+    {loading && <Loading/>}
     <div className='overflow-hidden'>
       <Navbar />
       <RightSideContainer>
@@ -90,14 +88,14 @@ function ClubInfo() {
                         <AccordionContent className='bg-slate-700 text-blue-300'>
                           <div className="text-2xl text-justify">{club.Description}</div>
                           <div class="place-items-center text-center p-2">
-                            <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[7vw] rounded-lg">
+                            <button onClick={() => redirSignUp(club.Name)} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[8vw] rounded-lg">
                               Sign up
                             </button>
                           </div>
-                          <div className="ml-[20.9vw]">
-                            <Button onClick={() => {setOpenModal('dismissable'); setEmail(club.Email); setPic(club.Person_in_charge); setLocation(club.Location); setPhone(club.Phone_number)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold h-[5vh] w-[7vw]" color='bg-blue-700'>
+                          <div className="place-items-center text-center">
+                            <button onClick={() => {setOpenModal('dismissable'); setEmail(club.Email); setPic(club.Person_in_charge); setLocation(club.Location); setPhone(club.Phone_number)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[8vw] rounded-lg">
                               Enquiry
-                            </Button>
+                            </button>
                             <Modal show={openModal === 'dismissable'} onClose={() => setOpenModal(undefined)} className="bg-opacity-[0.36]">
                               <Modal.Header className="font-mono border-slate-400 divide-x-[21.5vw] divide-transparent">
                                 Contact Information
@@ -144,6 +142,7 @@ function ClubInfo() {
         </div>
       </RightSideContainer>
     </div>
+  </div>
   );
 }
 

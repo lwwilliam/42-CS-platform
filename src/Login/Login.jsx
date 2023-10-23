@@ -33,7 +33,7 @@ const Login = () => {
       return;
     }
 
-    const { clientID, redirectURI } = authConfig;
+    const { clientID, redirectURI} = authConfig;
     const scopes = 'public'; // Specify the scopes you need
 
     // Construct the authorization URL
