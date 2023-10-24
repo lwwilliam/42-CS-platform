@@ -56,7 +56,6 @@ function MyClubs() {
     axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
       .then(response => {
         setJoinedClubsinfo(response.data);
-        console.log(response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -72,12 +71,12 @@ function MyClubs() {
         <div className='flex h-[4vw] bg-transparent'></div>
         <div className='flex flex-row flex-wrap'>
           {joinedClubsinfo.clubname.map((clubname, index) => (
-            <div key={index} className='ml-10 mt-10'>
+            <div key={index} className='ml-20 mt-10'>
               <Card className="max-w-md shadow-2xl shadow-indigo-800 border-indigo-800 h-96">
                   <h4 className="text-2xl font-bold font-serif tracking-wide text-black ml-[0vw] text-center">
                     {clubname}
                   </h4>
-                  <p className="text-lg font-semibold text-slate-700 ml-[0vw] h-52">
+                  <p className="text-lg font-semibold text-slate-700 ml-[0vw] h-52 overflow-auto">
                     {joinedClubsinfo.description[index]}
                   </p>
                   <Button gradientDuoTone="purpleToBlue" className="w-1/3 bottom-0 mx-32" href={joinedClubsinfo.redir_link[index]} target="_blank">
