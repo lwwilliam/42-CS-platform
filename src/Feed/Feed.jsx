@@ -15,7 +15,7 @@ function Feed() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => setLoading(false), 3000)
     const id = localStorage.getItem('id');
     axios.get(`${BACKEND_URL}/api/shortcode/${id}`)
       .then(response => {
@@ -31,7 +31,7 @@ function Feed() {
   useEffect(() => {
     if (shortcode) {
       let shortcode2 = shortcode;
-      setShortcode2(shortcode2.slice(0, 8));
+      setShortcode2(shortcode2.slice(0, 10));
     }
   }, [shortcode]);
 

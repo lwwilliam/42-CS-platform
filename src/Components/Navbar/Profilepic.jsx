@@ -22,8 +22,6 @@ const UserProfile = () => {
       });
   }, [id]);
 
-  console.log(profilePic);
-
   if (profilePic === null) {
     return <div className='font-white'>Loading...</div>;
   }

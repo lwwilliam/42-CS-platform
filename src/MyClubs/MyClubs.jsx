@@ -31,7 +31,6 @@ function MyClubs() {
           body: JSON.stringify(key),
         });
         if (response.ok) {
-          console.log('Code sent to the backend successfully.');
           const data = await response.json();
           setObjid(data.objectid);
           if (data.objectid) {
@@ -52,7 +51,7 @@ function MyClubs() {
   const id = localStorage.getItem('id');
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => setLoading(false), 3000)
     axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
       .then(response => {
         setJoinedClubsinfo(response.data);

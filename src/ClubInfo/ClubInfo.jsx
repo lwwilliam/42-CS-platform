@@ -37,7 +37,7 @@ function ClubInfo() {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000)
+    setTimeout(() => setLoading(false), 3000)
     axios.get(`${BACKEND_URL}/api/shortcode/all`)
     .then(response => {
       setShortcode(response.data.message);
@@ -50,7 +50,7 @@ function ClubInfo() {
 
   useEffect(() => {
     if (shortcode && shortcode.length > 0) {
-      let shortcode2 = shortcode.slice(0, 6);
+      let shortcode2 = shortcode.slice(0, 10);
       setShortcode2(shortcode2);
     }
   }, [shortcode]);
