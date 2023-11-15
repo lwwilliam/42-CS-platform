@@ -52,10 +52,6 @@ function MyClubs() {
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 3000)
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
     axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
       .then(response => {
         setJoinedClubsinfo(response.data);
