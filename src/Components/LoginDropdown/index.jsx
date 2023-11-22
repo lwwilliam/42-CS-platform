@@ -42,25 +42,25 @@ const LoginDropdown = () => {
   }
 
 	return (
-		<div class='relative flex flex-col items-center w-1/3 rounded-lg'>
-      <button onClick={() => setIsOpen((prev) => !prev)} class='bg-teal-600 text-white p-6 h-28 w-full flex items-center justify-between font-bold text-2xl rounded-lg tracking-wider border-4 border-transparent active:border-white duration-300 active:text-black'>
+		<div className='relative flex flex-col items-center w-1/3 rounded-lg'>
+      <button onClick={() => setIsOpen((prev) => !prev)} className='bg-teal-600 text-white p-6 h-28 w-full flex items-center justify-between font-bold text-2xl rounded-lg tracking-wider border-4 border-transparent active:border-white duration-300 active:text-black'>
         Select Campus
         {!isOpen ? 
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
           </svg> : 
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
+          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
           </svg>
           }
       </button>
       {isOpen && (
-        <div class='bg-white absolute top-[120px] flex flex-col items-start rounded-lg p-2 w-full'>
+        <div className='bg-white absolute top-[120px] flex flex-col items-start rounded-lg p-2 w-full'>
           {campuslist.map((campus, index) => ( 
-            <button onClick={() => handleclick(campus.Campus_Name)} class='w-full'>
-              <div class='flex w-full justify-between p-4 hover:bg-blue-200 cursor-pointer rounded-lg border-l-transparent' key={index}>
-                  <h3 class="font-bold ">{campus.Campus_Name}</h3>
-                  <img src={require(`../../images/${campus.logo}`)} class='h-[25px]' alt="logo path"/>
+            <button onClick={() => handleclick(campus.Campus_Name)} className='w-full'>
+              <div className='flex w-full justify-between p-4 hover:bg-blue-200 cursor-pointer rounded-lg border-l-transparent' key={index}>
+                  <h3 className="font-bold ">{campus.Campus_Name}</h3>
+                  <img src={require(`../../images/${campus.logo}`)} className='h-[25px]' alt="logo path"/>
               </div>
             </button>
           ))}
