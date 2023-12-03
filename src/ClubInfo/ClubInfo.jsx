@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import "./ClubInfo.css";
 // import { ClubLink } from './ClubInfoLink';
 import Navbar from '../Components/Navbar';
 import Loading from '../Components/LoadingOverlay';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
+import "../Components/components.css";
 import { Accordion } from 'flowbite-react';
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel';
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle';
@@ -68,7 +68,7 @@ function ClubInfo() {
     <div className='overflow-hidden'>
       <Navbar />
       <RightSideContainer>
-        <div className='club-header'>Clubs</div>
+        <div className='c-header'>Clubs</div>
         <div className='flex h-[4vw] bg-transparent'></div>
         <div className='h-auto w-[100%] flex'>
 

@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Login/Login';
 import Feed from './Feed/Feed';
 import MyClubs from './MyClubs/MyClubs';
+import FAQ from './FAQ/FAQ';
 // import Alerts from './Alerts/Alerts';
 import ClubInfo from './ClubInfo/ClubInfo';
 import SignUp from './SignUp/SignUp';
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Login />} />
         <Route path='/Feed' element={<Feed />} />
         <Route path='/MyClubs' element={<MyClubs />} />
+        <Route path='/FAQ' element={<FAQ />} />
         {/* <Route path='/Alerts' element={<Alerts />} /> */}
         <Route path='/ClubInfo' element={<ClubInfo />} />
         <Route path='/SignUp/*' element={<SignUp />} />

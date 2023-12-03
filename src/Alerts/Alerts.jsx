@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../Components/Navbar';
-import './Alerts.css';
+import "../Components/components.css";
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 
 function Alerts() {
@@ -8,7 +8,7 @@ function Alerts() {
     <div>
       <Navbar />
         <RightSideContainer>
-        <div className='alerts-header'>Alerts</div>
+        <div className='c-header'>Alerts</div>
         <table width="80%" border="1" bgcolor="#aaaaaa" align='center' style={{marginTop: "6vw"}}>
           <tr style={{height: "50px"}}>
             <td width="25%">Club Meeting</td>

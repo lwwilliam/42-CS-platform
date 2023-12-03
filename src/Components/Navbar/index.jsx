@@ -13,7 +13,7 @@ function Navbar() {
     <>
       <LeftSideContainer>
         <ProfilePicture />
-        <div className='h-[5vh] bg-transparent'></div>
+        <div className='h-[7vh] bg-transparent'></div>
         <Nav>
           <NavMenu>
             <NavLink to="/MyClubs">
@@ -24,6 +24,9 @@ function Navbar() {
             </NavLink>
             <NavLink to="/ClubInfo">
               Clubs Info
+            </NavLink>
+            <NavLink to="/FAQ">
+              FAQ
             </NavLink>
           </NavMenu>
         </Nav>

@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar';
 import Loading from '../Components/LoadingOverlay';
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import "react-slideshow-image/dist/styles.css";
-import "./Feed.css";
+import "../Components/components.css";
 import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 
@@ -41,10 +41,10 @@ function Feed() {
       {loading && <Loading/>}
       <Navbar />
       <RightSideContainer>
-        <div className='feed-header'>Feed</div>
+        <div className='c-header'>Feed</div>
         <div style={{marginTop: "4vw"}}>
         {shortcode2.map((edge) => (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="flex justify-center" key={edge}>
             <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} />
           </div>
         ))}

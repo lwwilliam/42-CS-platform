@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
 import Loading from '../Components/LoadingOverlay';
-import './MyClubs.css';
+import "../Components/components.css";
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
 import axios from 'axios';
@@ -66,7 +66,7 @@ function MyClubs() {
       {loading && <Loading/>}
       <Navbar />
       <RightSideContainer>
-        <div className='club-header'>My Clubs</div>
+        <div className='c-header'>My Clubs</div>
         <div className='flex h-[4vw] bg-transparent'></div>
         <div className='flex flex-row flex-wrap'>
           {joinedClubsinfo.clubname.map((clubname, index) => (

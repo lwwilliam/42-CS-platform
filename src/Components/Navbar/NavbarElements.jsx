@@ -44,20 +44,3 @@ export const RightSideContainer = styled.div`
   margin-left: 10%; /* Adjust based on the width of the LeftSideContainer */
   padding: 20px; /* Add padding to create space between Navbar and content */
 `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
