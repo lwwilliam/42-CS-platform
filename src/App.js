@@ -18,7 +18,6 @@ function App() {
         <Route path='/Feed' element={<Feed />} />
         <Route path='/MyClubs' element={<MyClubs />} />
         <Route path='/FAQ' element={<FAQ />} />
-        {/* <Route path='/Alerts' element={<Alerts />} /> */}
         <Route path='/ClubInfo' element={<ClubInfo />} />
         <Route path='/SignUp/*' element={<SignUp />} />
       </Routes>
