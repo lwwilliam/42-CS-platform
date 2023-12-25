@@ -1,39 +1,24 @@
 import React, {useState, useEffect} from 'react';
-// import { ClubLink } from './ClubInfoLink';
-import Navbar from '../Components/Navbar';
-import Loading from '../Components/LoadingOverlay';
-import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import "../Components/components.css";
-import { Accordion } from 'flowbite-react';
-import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel';
-import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle';
-import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent';
-import { useNavigate } from 'react-router-dom';
+// import Loading from '../Components/LoadingOverlay';
 import axios from 'axios';
-import { InstagramEmbed } from 'react-social-media-embed';
-import EnquiryPopup from '../Components/EnquiryPopup';
 import Layout from '../Components/layout';
 import Card from '../Components/Cards';
+import search from '../assets/icons/search.svg';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
 function ClubInfo() {
-  const navigate = useNavigate();
   const [info, setInfo] = useState([]);
-  const [shortcode, setShortcode] = useState([]);
-  const [shortcode2, setShortcode2] = useState([]);
-  const [openModal, setOpenModal] = React.useState(false);
-  const [pic, setPic] = useState(false);
-  const [email, setEmail] = useState(false);
-  const [loading, setLoading] = useState(true)
-  // const [phone, setPhone] = useState(false);
-  // const [location, setLocation] = useState(false);
+  const [filteredInfo, setFilteredInfo] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // setTimeout(() => setLoading(false), 3000)
     axios.get(`${BACKEND_URL}/api/test`)
     .then(response => {
       setInfo(response.data.message);
-      console.log(response.data.message);
+      setFilteredInfo(response.data.message);
       // console.log(response.data.message);
     })
     .catch(error => {
@@ -42,46 +27,56 @@ function ClubInfo() {
     );
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 3000)
-    axios.get(`${BACKEND_URL}/api/shortcode/all`)
-    .then(response => {
-      setShortcode(response.data.message);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    }
-    );
-  }, []);
+  const filterClubsByName = (query) => {
+    const filteredData = {};
 
-  useEffect(() => {
-    if (shortcode && shortcode.length > 0) {
-      let shortcode2 = shortcode.slice(0, 10);
-      setShortcode2(shortcode2);
-    }
-  }, [shortcode]);
+    Object.keys(info).forEach((category) => {
+      const categoryClubs = info[category].filter((club) =>
+        club.Name.toLowerCase().includes(query.toLowerCase())
+      );
 
-  function redirSignUp(path) {
-    navigate('/SignUp/' + path);
+      if (categoryClubs.length > 0) {
+        filteredData[category] = categoryClubs;
+      }
+    });
+
+    return filteredData;
+  };
+
+  const handleSearchInputChange = (e) => {
+    const inputValue = e.target.value;
+    const filteredClubs = filterClubsByName(inputValue);
+    setFilteredInfo(filteredClubs);
   };
 
   return (
+    <>
+    {/* {loading && <Loading/>} */}
     <Layout>
-      <div className='w-full border-2 flex justify-center'>
-        <div>
-          <div className='w-full flex'>
-            <div>All Clubs & Societies</div>
-            {/* <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name"></input> */}
+      <div className='w-full flex flex-col justify-center items-center'>
+        <div className='flex w-[80%] py-16 items-center justify-between'>
+          <div className='font-poppins font-bold text-6xl'>All Clubs & Societies</div>
+          <div className='flex items-center'>
+            <button className='bg-[#99DEFF] px-16 py-4 text-2xl font-poppins font-semibold rounded-2xl shadow-lg mr-10'>Filter</button>
+            <div className='relative'>
+              <input type="text" id="myInput" placeholder="Search" title="Type in a name" 
+                className='bg-[#E3E1E1] text-black pl-10 pr-16 py-4 text-2xl font-poppins font-medium rounded-3xl shadow-lg w-[460px] border-[#E3E1E1]'
+                onChange={handleSearchInputChange}
+              />
+              <img src={search} className='absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-10' alt="Search Icon"/>
+            </div>
           </div>
+        </div>
+        <div className='w-full'>
           <div>
-            {Object.entries(info).map(([category, item], index) => (
+            {Object.entries(filteredInfo).map(([category, item], index) => (
               <div key={index} className='flex flex-col items-center'>
-                <div className='text-3xl font-poppins font-black py-8 w-[80%]'>{category}</div>
+                <div className='text-3xl font-poppins font-extrabold py-8 w-[80%]'>{category}</div>
                 <div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
                   {item.map((club, clubindex) => (
-                    // <div className='border-2 flex justify-center items-center'>
-                    <Card club={club} key={clubindex}/>
-                    // </div>
+                    <div key={clubindex}>
+                      <Card club={club}/>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -90,6 +85,7 @@ function ClubInfo() {
         </div>
       </div>
     </Layout>
+    </>
   );
 }
 
