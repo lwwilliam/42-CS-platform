@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Components/Navbar';
-import Loading from '../Components/LoadingOverlay';
+import TopNavBar from '../Components/TopNavBar';
+import Layout from '../Components/layout';
 import "../Components/components.css";
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import { Button, Card } from 'flowbite-react';
 import axios from 'axios';
+import MyClubTile from '../Components/MyClubTile';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -58,35 +59,29 @@ function MyClubs() {
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-      });  
+      });
   }, [id]);
 
   return (
-    <div>
-      {loading && <Loading/>}
-      <Navbar />
-      <RightSideContainer>
-        <div className='c-header'>My Clubs</div>
-        <div className='flex h-[4vw] bg-transparent'></div>
-        <div className='flex flex-row flex-wrap'>
-          {joinedClubsinfo.clubname.map((clubname, index) => (
-            <div key={index} className='ml-20 mt-10'>
-              <Card className="max-w-md shadow-2xl shadow-indigo-800 border-indigo-800 h-96">
-                  <h4 className="text-2xl font-bold font-serif tracking-wide text-black ml-[0vw] text-center">
-                    {clubname}
-                  </h4>
-                  <p className="text-lg font-semibold text-slate-700 ml-[0vw] h-52 overflow-auto">
-                    {joinedClubsinfo.description[index]}
-                  </p>
-                  <Button gradientDuoTone="purpleToBlue" className="w-1/3 bottom-0 mx-32" href={joinedClubsinfo.redir_link[index]} target="_blank">
-                    Link
-                  </Button>
-              </Card>
-            </div>
-          ))}
-        </div>
-      </RightSideContainer>
-    </div>
+	<Layout>
+		<div>
+			<div className='ml-20 mt-10 mb-10'>
+				<div className='text-6xl font-poppins font-bold'>My Clubs</div>
+				{/* <Button />
+				<SearchBar /> */}
+			</div>
+			<div className='ml-20 mt-10'>
+				{joinedClubsinfo.clubname.map((clubname, index) => (
+					<div key={index} className='flex flex-col items-center'>
+						<div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
+							<MyClubTile clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
+						</div>
+					</div>
+					))
+				}
+			</div>
+		</div>
+	</Layout>
   );
 }
 

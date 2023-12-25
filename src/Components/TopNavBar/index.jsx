@@ -20,7 +20,7 @@ const TopNavBar = ({ className }) => {
   return(
     <div className={`border-b-2 border-black h-20 flex items-center justify-center ${className}`}>
       <div className='flex w-[76%] items-center justify-between'>
-        <div className='text-4xl font-poppins font-bold'>Clubs & Societies</div>
+        <div className='text-3xl font-poppins font-bold'>Clubs & Societies</div>
         <div className='flex items-center'>
           <button className='md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/MyClubs")}>
             <img src={yourclubs} className='h-9 w-9' alt="home icon"/>

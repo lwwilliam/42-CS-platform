@@ -70,7 +70,7 @@ function ClubInfo() {
       <div className='w-full border-2 flex justify-center'>
         <div>
           <div className='w-full flex'>
-            <div>All Clubs & Societies</div>
+            <div className='text-3xl font-poppins font-black'>All Clubs & Societies</div>
             {/* <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name"></input> */}
           </div>
           <div>
