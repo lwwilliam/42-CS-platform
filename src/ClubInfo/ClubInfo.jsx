@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { InstagramEmbed } from 'react-social-media-embed';
 import EnquiryPopup from '../Components/EnquiryPopup';
+import Layout from '../Components/layout';
+import Card from '../Components/Cards';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -31,6 +33,7 @@ function ClubInfo() {
     axios.get(`${BACKEND_URL}/api/test`)
     .then(response => {
       setInfo(response.data.message);
+      console.log(response.data.message);
       // console.log(response.data.message);
     })
     .catch(error => {
@@ -63,65 +66,30 @@ function ClubInfo() {
   };
 
   return (
-    <div>
-    {loading && <Loading/>}
-    <div className='overflow-hidden'>
-      <Navbar />
-      <RightSideContainer>
-        <div className='c-header'>Clubs</div>
-        <div className='flex h-[4vw] bg-transparent'></div>
-        <div className='h-auto w-[100%] flex'>
-
-          <Accordion collapseAll className='w-[60%] border-[#2eb6d1] divide-[#2eb6d1]'>
+    <Layout>
+      <div className='w-full border-2 flex justify-center'>
+        <div>
+          <div className='w-full flex'>
+            <div>All Clubs & Societies</div>
+            {/* <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name"></input> */}
+          </div>
+          <div>
             {Object.entries(info).map(([category, item], index) => (
-              <AccordionPanel key={index}>
-                <AccordionTitle className='bg-blue-950 text-white hover:bg-blue-900 hover:text-white focus:bg-blue-950 h-[9vh]'>
-                  <div className='text-[2vw]'>{category}</div>
-                </AccordionTitle>
-                <AccordionContent className='bg-slate-700'>
-                  <Accordion collapseAll className='w-[100%] border-[#2eb6d1] divide-[#2eb6d1]'>
-                    {item.map((item, itemIndex) => (
-                      <AccordionPanel key={itemIndex}>
-                        <AccordionTitle className='bg-blue-950 text-white hover:bg-blue-900 hover:text-white focus:bg-blue-950'>
-                          <div className='text-2xl'>{item.Name}</div>
-                        </AccordionTitle>
-                        <AccordionContent className='bg-slate-700 text-blue-300'>
-                          <div className="text-2xl text-justify">{item.SocialMedia}</div>
-                          <div className="place-items-center text-center p-2">
-                            <button onClick={() => redirSignUp(item.Name)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[8vw] rounded-lg">
-                              Sign up
-                            </button>
-                          </div>
-                          <div className="place-items-center text-center">
-                            <button onClick={() => {setOpenModal(true); setEmail(item.Email); setPic(item.Advisor)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-[5vh] w-[8vw] rounded-lg">
-                              Enquiry
-                            </button>
-                          </div>
-                        </AccordionContent>
-                      </AccordionPanel>
-                    ))}
-                  </Accordion>
-                </AccordionContent>
-              </AccordionPanel>
-            ))}
-          </Accordion>
-          <div className='w-[40%] pl-4 overflow-auto h-[90vh]'>
-            {shortcode2.map((edge) => (
-              // bg color in className is for visualisation, !!REMOVE WHEN PLACING FEED!!
-              <div className="bg-slate-500 justify-center flex">
-                <InstagramEmbed url={`https://www.instagram.com/p/${edge}/`} width={800} />
+              <div key={index} className='flex flex-col items-center'>
+                <div className='text-3xl font-poppins font-black py-8 w-[80%]'>{category}</div>
+                <div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
+                  {item.map((club, clubindex) => (
+                    // <div className='border-2 flex justify-center items-center'>
+                    <Card club={club} key={clubindex}/>
+                    // </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
         </div>
-        {openModal && (
-            <div className='bg-opacity-[0.8] bg-gray-900 top-0 left-0 w-full h-full fixed flex justify-center items-center'>
-              <EnquiryPopup email={email} advisor={pic} openModal={openModal} setOpenModal={setOpenModal}/>
-            </div>
-          )}
-      </RightSideContainer>
-    </div>
-  </div>
+      </div>
+    </Layout>
   );
 }
 

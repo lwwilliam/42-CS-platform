@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import campuslist from './campuslist.json';
+// import campuslist from './campuslist.json';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
 const LoginDropdown = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [authConfig, setAuthConfig] = useState({});
 
   useEffect(() => {
@@ -42,31 +42,25 @@ const LoginDropdown = () => {
   }
 
 	return (
-		<div className='relative flex flex-col items-center w-1/3 rounded-lg'>
-      <button onClick={() => setIsOpen((prev) => !prev)} className='bg-teal-600 text-white p-6 h-28 w-full flex items-center justify-between font-bold text-2xl rounded-lg tracking-wider border-4 border-transparent active:border-white duration-300 active:text-black'>
-        Select Campus
-        {!isOpen ? 
-          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
-          </svg> : 
-          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
-          </svg>
-          }
-      </button>
-      {isOpen && (
-        <div className='bg-white absolute top-[120px] flex flex-col items-start rounded-lg p-2 w-full'>
-          {campuslist.map((campus, index) => ( 
-            <button onClick={() => handleclick(campus.Campus_Name)} className='w-full'>
-              <div className='flex w-full justify-between p-4 hover:bg-blue-200 cursor-pointer rounded-lg border-l-transparent' key={index}>
-                  <h3 className="font-bold ">{campus.Campus_Name}</h3>
-                  <img src={require(`../../images/${campus.logo}`)} className='h-[25px]' alt="logo path"/>
-              </div>
-            </button>
-          ))}
+    <div className='md:w-1/3 bg-white h-2/5 rounded-2xl w-10/12 flex items-center'>
+      <div className='flex-col flex items-center w-full'>
+        <div className='text-center pb-2 text-4xl font-poppins font-bold'>
+          Log In
         </div>
-      )}
-		</div>
+        <button onClick={() => handleclick("Sunway University")} className='w-[80%] bg-[#ACACAC] rounded-lg hover:bg-[#d6d6d6] my-2 h-[4.3rem]'>
+          <div className='flex w-full cursor-pointer rounded-lg items-center'>
+            <img src={require(`../../assets/images/Sunway_uni_logo.png`)} className='h-[50px] my-[-1rem] md:pl-6' alt="logo path"/>
+            <h1 className="font-bold text-white w-full">Continue with Student ID</h1>
+          </div>
+        </button>
+        <button onClick={() => handleclick("42 Kuala Lumpur")} className='w-[80%] bg-black rounded-lg hover:bg-[#1c1c1c] my-2 h-[4.3rem]'>
+          <div className='flex w-full cursor-pointer rounded-lg items-center'>
+            <img src={require(`../../assets/images/42_logo.png`)} className='h-[40px] my-[-1rem] md:pl-6 pl-2  ' alt="logo path"/>
+            <h1 className="font-bold text-white w-full">Continue with Intra ID</h1>
+          </div>
+        </button>
+      </div>
+    </div>
 	);
 };
 
