@@ -65,7 +65,7 @@ function MyClubs() {
   return (
 	<Layout>
 		<div>
-			<div className='ml-20 mt-10 mb-10'>
+			<div className='ml-20 mt-10 mb-10 items-center'>
 				<div className='text-6xl font-poppins font-bold'>My Clubs</div>
 				{/* <Button />
 				<SearchBar /> */}
@@ -73,7 +73,7 @@ function MyClubs() {
 			<div className='ml-20 mt-10'>
 				{joinedClubsinfo.clubname.map((clubname, index) => (
 					<div key={index} className='flex flex-col items-center'>
-						<div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
+						<div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%] py-4'>
 							<MyClubTile clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
 						</div>
 					</div>
