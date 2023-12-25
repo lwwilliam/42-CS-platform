@@ -65,20 +65,19 @@ function MyClubs() {
   return (
 	<Layout>
 		<div>
-			<div className='ml-20 mt-10 mb-10 items-center'>
-				<div className='text-6xl font-poppins font-bold'>My Clubs</div>
+			<div className='ml-[11rem] mt-10 mb-10 items-center'>
+				<div className='mx-20 text-5xl font-poppins font-bold'>My Clubs</div>
 				{/* <Button />
 				<SearchBar /> */}
 			</div>
-			<div className='ml-20 mt-10'>
-				{joinedClubsinfo.clubname.map((clubname, index) => (
-					<div key={index} className='flex flex-col items-center'>
-						<div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%] py-4'>
+			<div className='lg:mx-[15rem] lg:mt-10'>
+				<div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+					{joinedClubsinfo.clubname.map((clubname, index) => (
+						<div key={index} className='flex flex-col py-4 gap-2'>
 							<MyClubTile clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
 						</div>
-					</div>
-					))
-				}
+						))}
+				</div>
 			</div>
 		</div>
 	</Layout>
