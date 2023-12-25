@@ -19,7 +19,7 @@ html {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #00aeff; 
+  background: #00aeff;
 }
 
 html,

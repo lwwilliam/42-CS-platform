@@ -72,7 +72,7 @@ function ClubInfo() {
             {Object.entries(filteredInfo).map(([category, item], index) => (
               <div key={index} className='flex flex-col items-center'>
                 <div className='text-3xl font-poppins font-extrabold py-8 w-[80%]'>{category}</div>
-                <div className='md:grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
+                <div className='md:grid grid-cols-2 gap-y-10 gap-x-20 w-[80%] my-10'>
                   {item.map((club, clubindex) => (
                     <Card club={club} key={clubindex}/>
                   ))}
