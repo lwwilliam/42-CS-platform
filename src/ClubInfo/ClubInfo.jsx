@@ -54,16 +54,16 @@ function ClubInfo() {
     {/* {loading && <Loading/>} */}
     <Layout>
       <div className='w-full flex flex-col justify-center items-center'>
-        <div className='flex w-[80%] py-16 items-center justify-between'>
-          <div className='font-poppins font-bold text-6xl'>All Clubs & Societies</div>
-          <div className='flex items-center'>
-            <button className='bg-[#99DEFF] px-16 py-4 text-2xl font-poppins font-semibold rounded-2xl shadow-lg mr-10'>Filter</button>
+        <div className='lg:flex w-[80%] py-16 items-center justify-between'>
+          <div className='font-poppins font-bold md:text-6xl text-4xl'>All Clubs & Societies</div>
+          <div className='md:flex'>
+            <button className='bg-[#99DEFF] md:px-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-semibold rounded-2xl shadow-lg mr-10 md:mb-0 mb-3 md:w-auto w-full'>Filter</button>
             <div className='relative'>
               <input type="text" id="myInput" placeholder="Search" title="Type in a name" 
-                className='bg-[#E3E1E1] text-black pl-10 pr-16 py-4 text-2xl font-poppins font-medium rounded-3xl shadow-lg w-[460px] border-[#E3E1E1]'
+                className='bg-[#E3E1E1] text-black md:pl-10 md:pr-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-medium rounded-3xl shadow-lg w-full border-[#E3E1E1]'
                 onChange={handleSearchInputChange}
               />
-              <img src={search} className='absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-10' alt="Search Icon"/>
+              <img src={search} className='absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer md:w-10 w-6' alt="Search Icon"/>
             </div>
           </div>
         </div>
@@ -72,11 +72,9 @@ function ClubInfo() {
             {Object.entries(filteredInfo).map(([category, item], index) => (
               <div key={index} className='flex flex-col items-center'>
                 <div className='text-3xl font-poppins font-extrabold py-8 w-[80%]'>{category}</div>
-                <div className='grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
+                <div className='md:grid grid-cols-2 gap-y-10 gap-x-20 w-[80%]'>
                   {item.map((club, clubindex) => (
-                    <div key={clubindex}>
-                      <Card club={club}/>
-                    </div>
+                    <Card club={club} key={clubindex}/>
                   ))}
                 </div>
               </div>

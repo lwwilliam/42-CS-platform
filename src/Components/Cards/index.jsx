@@ -13,7 +13,7 @@ function Card(props) {
   
   const { fbPart, igPart } = splitSocialMedia(props.club.SocialMedia);
   return (
-    <div className='bg-white h-64 rounded-3xl shadow-lg flex items-center justify-center'>
+    <div className='bg-white h-64 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0'>
       <div className='w-11/12 font-poppins'>
         <div className="md:text-2xl lg:text-3xl py-3 font-extrabold">
           {props.club.Name}
