@@ -4,6 +4,7 @@ import "../Components/components.css";
 import axios from 'axios';
 import MyClubTile from '../Components/MyClubTile';
 import Button from '../Components/Button';
+import SearchBar from '../Components/SearchBar';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -17,6 +18,15 @@ function MyClubs() {
     description: [],
     redir_link: []
   });
+
+  // handles the search bar 
+  const [searchResults, setSearchResults] = useState(joinedClubsinfo.clubname)
+
+  const handleSearchInputChange = (e) => {
+    setSearchResults(joinedClubsinfo.clubname.filter((club) => {
+		return club.toLowerCase().includes(e.target.value.toLowerCase())
+	}));
+  };
 
   useEffect(() => {
     // Define the postCode function inside the useEffect
@@ -64,14 +74,16 @@ function MyClubs() {
 	<Layout>
 		<div className='w-full justify-center p-8'>
 		<div className='md:mx-20'>
-				<div className='flex flex-row justify-between'>
+				<div className='flex flex-col md:flex-row justify-between'>
 					<div className='my-2 text-5xl font-poppins font-bold whitespace-nowrap'>My Clubs</div>
-					{/* <Button width='13rem' height='4rem' text='Filter'/> */}
-					{ /*<SearchBar /> */}
+					<div className='flex flex-col md:flex-row py-2'>
+						<Button text="Filter" />
+						<SearchBar onChange={handleSearchInputChange}/>
+					</div>
 				</div>
 				<div className='flex py-8 items-center'>
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
-						{joinedClubsinfo.clubname.map((clubname, index) => (
+						{searchResults.map((clubname, index) => (
 							<MyClubTile key={index} clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
 							))}
 					</div>
