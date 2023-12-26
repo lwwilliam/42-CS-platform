@@ -23,11 +23,11 @@ const TopNavBar = ({ className }) => {
         <div className='text-3xl font-poppins font-bold'>Clubs & Societies</div>
         <div className='flex items-center'>
           <button className='md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/MyClubs")}>
-            <img src={yourclubs} className='h-9 w-9' alt="home icon"/>
+            <img src={yourclubs} className='h-7 w-7' alt="home icon"/>
             <span>Your Clubs</span>
           </button>
           <button className='md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/ClubInfo")}>
-            <img src={allclubs} className='h-7 w-7' alt="home icon"/>
+            <img src={allclubs} className='h-6 w-6' alt="home icon"/>
             <span>All Clubs</span>
           </button>
           <button className='md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/Feed")}>
