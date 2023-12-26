@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TopNavBar from '../Components/TopNavBar';
 import Layout from '../Components/layout';
 import "../Components/components.css";
-import { RightSideContainer } from '../Components/Navbar/NavbarElements';
-import { Button, Card } from 'flowbite-react';
 import axios from 'axios';
 import MyClubTile from '../Components/MyClubTile';
+import Button from '../Components/Button';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -64,19 +62,21 @@ function MyClubs() {
 
   return (
 	<Layout>
-		<div>
-			<div className='ml-[11rem] mt-10 mb-10 items-center'>
-				<div className='mx-20 text-5xl font-poppins font-bold'>My Clubs</div>
-				{/* <Button />
-				<SearchBar /> */}
-			</div>
-			<div className='lg:mx-[15rem] lg:mt-10'>
-				<div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-					{joinedClubsinfo.clubname.map((clubname, index) => (
-						<div key={index} className='flex flex-col py-4 gap-2'>
-							<MyClubTile clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
-						</div>
-						))}
+		<div className='w-full flex justify-center'>
+			<div>
+				<div className='my-10 w-2/3'>
+					<div className='flex flex-row justify-between'>
+						<div className='my-2 text-5xl font-poppins font-bold whitespace-nowrap'>My Clubs</div>
+						{/* <Button width='13rem' height='4rem' text='Filter'/> */}
+						{ /*<SearchBar /> */}
+					</div>
+				</div>
+				<div className='flex my-10 items-center justify-center'>
+					<div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+						{joinedClubsinfo.clubname.map((clubname, index) => (
+								<MyClubTile key={index} clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
+							))}
+					</div>
 				</div>
 			</div>
 		</div>

@@ -3,16 +3,15 @@ import React from 'react';
 function MyClubTile({clubName, clubPosition, onClick})
 {
 	return (
-		<div className="flex flex-col w-[40rem] h-[4rem] relative shadow-lg rounded-[1.25rem] transform transition-all duration-200 hover:-translate-y-2">
-			<button className="w-[40rem] h-[4rem] left-0 top-0 absolute bg-white rounded-[1.25rem]" onClick={onClick}>
-				<div className="left-[1.25rem] top-[0.9rem] absolute text-black text-2xl font-bold font-['Poppins']">
-					{clubName}
-				</div>
-				<div className="left-[500px] top-[1.1rem] absolute text-black text-xl font-medium font-['Poppins']">
-					{clubPosition}
-				</div>
-			</button>
-		</div>
+		<button className='flex h-2/16 w-full justify-between items-center bg-white font-poppins text-black p-4 rounded-3xl shadow-lg transform transition-all duration-200 hover:-translate-y-2'
+			onClick={onClick}>
+			<div className="flex text-2xl pr-2 font-bold">
+				{clubName}
+			</div>
+			<div className="flex text-xl font-medium">
+				{clubPosition}
+			</div>
+		</button>
 	)
 }
 
