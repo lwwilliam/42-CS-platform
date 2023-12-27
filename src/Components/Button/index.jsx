@@ -3,14 +3,10 @@ import React from 'react'
 function Button({text, onClick})
 {
 	return (
-		<div className={`w-48 h-16 rounded-[1.25rem] relative transform transition-all duration-200 hover:shadow-lg`}>
-			<button className={`w-48 h-16 absolute bg-lightmode-blue rounded-[1.25rem]`}
-					onClick={onClick}>
-				<div className="text-center text-black text-[25px] font-medium font-['Poppins']">
-					{text}
-				</div>
-			</button>
-		</div>
+		<button className='bg-[#99DEFF] md:px-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-semibold rounded-2xl shadow-lg mr-10 md:mb-0 mb-3 md:w-auto w-full'
+				onClick={onClick}>
+			{text}
+		</button>
 	)
 }
 
