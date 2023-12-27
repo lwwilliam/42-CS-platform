@@ -19,15 +19,6 @@ function MyClubs() {
     redir_link: []
   });
 
-  // handles the search bar 
-  const [searchResults, setSearchResults] = useState(joinedClubsinfo.clubname)
-
-  const handleSearchInputChange = (e) => {
-    setSearchResults(joinedClubsinfo.clubname.filter((club) => {
-		return club.toLowerCase().includes(e.target.value.toLowerCase())
-	}));
-  };
-
   useEffect(() => {
     // Define the postCode function inside the useEffect
     const postCode = async () => {
@@ -63,19 +54,33 @@ function MyClubs() {
     setTimeout(() => setLoading(false), 3000)
     axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
       .then(response => {
-        setJoinedClubsinfo(response.data);
+        setJoinedClubsinfo(response.data)
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, [id]);
 
+    // handles the search bar 
+	const [searchResults, setSearchResults] = useState([])
+
+	const handleSearchInputChange = (e) => {
+		setSearchResults(joinedClubsinfo.clubname.filter((club) => {
+			return club.toLowerCase().includes(e.target.value.toLowerCase())
+		}))
+	};
+
+	useEffect(() => {
+		setSearchResults(joinedClubsinfo.clubname)
+	}, [joinedClubsinfo.clubname])
+
+
   return (
 	<Layout>
 		<div className='w-full justify-center p-8'>
 		<div className='md:mx-20'>
 				<div className='flex flex-col md:flex-row justify-between'>
-					<div className='my-2 text-5xl font-poppins font-bold whitespace-nowrap'>My Clubs</div>
+					<div className='flex items-center text-5xl font-poppins font-bold whitespace-nowrap'>My Clubs</div>
 					<div className='flex flex-col md:flex-row py-2'>
 						<Button text="Filter" />
 						<SearchBar onChange={handleSearchInputChange}/>
