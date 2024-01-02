@@ -19,6 +19,7 @@ module.exports = {
 
 		transitionProperty: {
 			'height': 'height',
+			'grid-template-rows': 'grid-template-rows',
 		},
 	},
   },

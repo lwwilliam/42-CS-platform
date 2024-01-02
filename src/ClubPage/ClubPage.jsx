@@ -50,7 +50,7 @@ function ClubPage({ clubName }) {
 							<AnnouncementCard />
 						</div>
 						<div className='flex py-10 items-center text-2xl md:text-3xl font-poppins font-bold whitespace-nowrap'>Events</div>
-						<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
+						<div className='grid grid-cols-1 gap-x-20 gap-y-10 w-full'>
 							<EventCard />
 							<EventCard />
 						</div>

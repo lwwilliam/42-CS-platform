@@ -37,7 +37,7 @@ function EventCard()
 
 	return (
 		<>
-			<div className='group flex flex-col h-40 hover:h-[400px] w-full justify-start bg-white font-poppins text-black p-6 rounded-3xl shadow-lg overflow-hidden transition-height duration-500 ease-in-out'>
+			<div className='group flex flex-col h-full w-full justify-start bg-white font-poppins text-black p-6 rounded-3xl shadow-lg transition-height duration-500 ease-in-out'>
 				<div className='flex flex-row justify-between items-center pb-1'>
 					<div className='font-poppins text-2xl font-bold'>{title}</div>
 					<button className='w-28 h-10 bg-[#99DEFF] md:text-md text-sm font-poppins font-medium rounded-2xl shadow-lg transition ease-linear hover:scale-110'>Join Event</button>
@@ -50,16 +50,27 @@ function EventCard()
 					</div>
 					<div>{attendees.toString() + " attending"}</div>
 				</div>
-				<div className='opacity-0 group-hover:opacity-100 transition-opacity ease-linear'>
-					<hr className='flex w-full h-0.5 mx-auto bg-black border-0 rounded my-3'/>
-					<div className='flex justify-between py-2'>
-						<div className='font-bold'>Event Details</div>
-						<div>{start_time + " - " + end_time}</div>
+				<div className='grid grid-rows-[0fr] group-hover:grid-rows-[1fr] opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out'>
+					<div className='overflow-hidden'>
+						<hr className='flex w-full h-0.5 mx-auto bg-black border-0 rounded my-3'/>
+						<div className='flex justify-between py-2'>
+							<div className='font-bold'>Event Details</div>
+							<div>{start_time + " - " + end_time}</div>
+						</div>
+						<div className='whitespace-pre-line'>{event_details}</div>
 					</div>
-					<div className='whitespace-pre-line flex-grow'>{event_details}</div>
 				</div>
 			</div>
 		</>
+
+		// <div className='bg-white group'>
+		// 	<div>Title</div>
+		// 	<div className='grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-grid-template-rows duration-500 ease-out'>
+		// 		<div className='overflow-hidden'>
+		// 			<div>content</div>
+		// 		</div>
+		// 	</div>
+		// </div>
 	)
 }
 
