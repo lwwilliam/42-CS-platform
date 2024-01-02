@@ -6,6 +6,7 @@ import Button from "../Components/Button";
 import fb_logo from "../assets/icons/facebook.svg"
 import insta_logo from "../assets/icons/instagram.svg"
 import AnnouncementCard from "../Components/AnnouncementCard";
+import EventCard from "../Components/EventCard";
 
 function ClubPage({ clubName }) {
 
@@ -48,7 +49,7 @@ function ClubPage({ clubName }) {
 						</div>
 						<div className='flex py-10 items-center text-2xl md:text-3xl font-poppins font-bold whitespace-nowrap'>Events</div>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
-							
+							<EventCard />
 						</div>
 					</div>
 				</div>

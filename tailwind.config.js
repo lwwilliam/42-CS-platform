@@ -16,6 +16,16 @@ module.exports = {
 			'darkmode-black': '#121212',
 			'darkmode-purple': '#5552FF',
 		},
+
+		transitionProperty: {
+			'height': 'height',
+		},
+	},
+  },
+
+  variants: {
+    extend: {
+    	display: ["group-hover"],
 	},
   },
 
