@@ -34,7 +34,7 @@ function AnnouncementCard()
 		<>
 			<div className='flex flex-col h-2/16 w-full justify-between bg-white font-poppins text-black p-6 rounded-3xl shadow-lg'>
 				<div className='font-poppins text-2xl font-bold'>{title}</div>
-				<div className='font-poppins text-md font-medium py-2'>{content}</div>
+				<div className='font-poppins text-md font-small py-2'>{content}</div>
 				<div className='flex justify-between items-center'>
 					<div className='flex flex-row'>
 						<img onClick={handleLiked} src={like_icon} className="active:animate-ping pr-2" />

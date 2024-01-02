@@ -27,12 +27,12 @@ function ClubPage({ clubName }) {
 				<div className="w-full justify-center p-8">
 					<div className="md:mx-40 md:my-6">
 						<div className="flex flex-col md:flex-row justify-between">
-							<div className='flex items-center py-5 text-3xl xl:text-5xl font-poppins font-bold md:whitespace-nowrap'>{club_name}</div>
-							<div>
-								<Button text="Join" />
+							<div className='flex items-center py-5 text-3xl xl:text-5xl font-poppins font-bold md:whitespace-wrap'>{club_name}</div>
+							<div className="flex items-center">
+								<Button text="Join"/>
 							</div>
 						</div>
-						<div className="py-2 font-poppins font-medium text-md md:text-xl xl:text-2xl">{club_desc}</div>
+						<div className="py-2 font-poppins font-small text-md md:text-1xl xl:text-2xl">{club_desc}</div>
 						<div className="py-2">
 							<div className="py-2 flex items-center font-poppins font-medium text-sm md:text-lg md:text-1xl">
 								<img src={fb_logo} alt="Facebook" className="pr-3 w-10 md:w-16"/>
@@ -46,9 +46,12 @@ function ClubPage({ clubName }) {
 						<div className='flex py-10 items-center text-2xl md:text-3xl font-poppins font-bold whitespace-nowrap'>Announcements</div>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
 							<AnnouncementCard />
+							<AnnouncementCard />
+							<AnnouncementCard />
 						</div>
 						<div className='flex py-10 items-center text-2xl md:text-3xl font-poppins font-bold whitespace-nowrap'>Events</div>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
+							<EventCard />
 							<EventCard />
 						</div>
 					</div>
