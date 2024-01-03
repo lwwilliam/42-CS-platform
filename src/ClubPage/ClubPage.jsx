@@ -29,7 +29,7 @@ function ClubPage({ clubName }) {
 						<div className="flex flex-col md:flex-row justify-between">
 							<div className='flex items-center py-5 text-3xl xl:text-5xl font-poppins font-bold md:whitespace-wrap'>{club_name}</div>
 							<div className="flex items-center">
-								<button className="w-full md:w-[9rem] h-12 md:h-15 bg-lightmode-blue md:text-xl text-lg font-poppins font-semibold rounded-2xl shadow-lg trasnform hover:scale-110">Join</button>
+								<button className="w-full md:w-[9rem] h-12 md:h-15 bg-lightmode-blue md:text-xl text-lg font-poppins font-semibold rounded-2xl shadow-lg trasnform hover:scale-110 transition-transform ease-out duration-200">Join</button>
 							</div>
 						</div>
 						<div className="py-2 font-poppins font-small text-md md:text-1xl xl:text-2xl">{club_desc}</div>

@@ -21,22 +21,22 @@ const TopNavBar = ({ className }) => {
     <div className={`border-b-2 border-black h-20 flex items-center justify-center ${className}`}>
       <div className='flex w-[84%] md:w-[76%] items-center justify-between'>
         <div className='text-1xl md:text-2xl lg:text-3xl font-poppins font-bold'>Clubs & Societies</div>
-        <div className='flex items-center justify-center'>
-          <button className='px-4 md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/MyClubs")}>
-            <img src={yourclubs} className='h-12 w-12 sm:h-7 sm:w-7' alt="home icon"/>
-            <span className='whitespace-nowrap hidden md:flex'>Your Clubs</span>
+        <div className='flex items-center justify-center md:mt-2'>
+          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/MyClubs")}>
+            <img src={yourclubs} className='h-11 sm:h-7' alt="home icon"/>
+            <span className='whitespace-nowrap hidden md:flex font-poppins'>Your Clubs</span>
           </button>
-          <button className='px-4 md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/ClubInfo")}>
-            <img src={allclubs} className='h-11 w-11 sm:h-7 sm:w-7' alt="home icon"/>
-            <span className='whitespace-nowrap hidden md:flex'>All Clubs</span>
+          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/ClubInfo")}>
+            <img src={allclubs} className='h-11 sm:h-7' alt="home icon"/>
+            <span className='whitespace-nowrap hidden md:flex font-poppins'>All Clubs</span>
           </button>
-          <button className='px-4 md:px-10 lg:px-14 flex-col flex items-center' onClick={() => redir("/Feed")}>
-            <img src={home} className='h-12 w-12 sm:h-7 sm:w-7' alt="home icon"/>
-            <span className='whitespace-nowrap hidden md:flex'>Home</span>
+          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/Feed")}>
+            <img src={home} className='h-12 sm:h-7' alt="home icon"/>
+            <span className='whitespace-nowrap hidden md:flex font-poppins'>Home</span>
           </button>
-          <button className='px-4 md:px-10 lg:px-14 flex-col flex items-center' onClick={() => Logout()}>
-            <img src={logout} className='h-12 w-12 sm:h-7 sm:w-7' alt="home icon"/>
-            <span className='whitespace-nowrap hidden md:flex'>Logout</span>
+          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => Logout()}>
+            <img src={logout} className='h-12 sm:h-7' alt="home icon"/>
+            <span className='whitespace-nowrap hidden md:flex font-poppins'>Logout</span>
           </button>
         </div>
       </div>
