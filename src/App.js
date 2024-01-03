@@ -8,6 +8,7 @@ import FAQ from './FAQ/FAQ';
 import ClubInfo from './ClubInfo/ClubInfo';
 import SignUp from './SignUp/SignUp';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ClubPage from './ClubPage/ClubPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/ClubInfo' element={<ClubInfo />} />
         <Route path='/SignUp/*' element={<SignUp />} />
+		<Route path='/test' element={<ClubPage />} />
       </Routes>
     </Router>
   );
