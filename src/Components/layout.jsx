@@ -4,7 +4,7 @@ import Navbar from './TopNavBar';
 const Layout = ({ children }) => {
   return (
     <div>
-      <Navbar className="hidden md:flex"/>
+      <Navbar className="flex"/>
       {children}
     </div>
   );

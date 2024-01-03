@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 import empty_heart_icon from "../../assets/icons/emptyHeart.svg"
 import full_heart_icon from "../../assets/icons/fullHeart.svg"
-import Button from '../Button'
 
 function EventCard()
 {
@@ -62,16 +61,22 @@ function EventCard()
 				</div>
 			</div>
 		</>
-
-		// <div className='bg-white group'>
-		// 	<div>Title</div>
-		// 	<div className='grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-grid-template-rows duration-500 ease-out'>
-		// 		<div className='overflow-hidden'>
-		// 			<div>content</div>
-		// 		</div>
-		// 	</div>
-		// </div>
 	)
 }
 
 export default EventCard;
+
+/*
+
+nice way to do hidden text w/ transition
+
+<div className='bg-white group'>
+	<div>Title</div>
+	<div className='grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-grid-template-rows duration-500 ease-out'>
+		<div className='overflow-hidden'>
+			<div>content</div>
+		</div>
+	</div>
+</div>
+
+*/
