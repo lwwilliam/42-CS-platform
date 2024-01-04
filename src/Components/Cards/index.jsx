@@ -1,8 +1,14 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 // import instagram from "../../assets/icons/instagram.svg";
 // import facebook from "../../assets/icons/facebook.svg";
 
 function Card(props) {
+  const navigate = useNavigate();
+
+  function redirect() {
+    navigate("/Clubhomepage?clubname=" + props.club.Name);
+  };
 
   // const splitSocialMedia = (socialMedia) => {
   //   const socialMediaParts = socialMedia.split('IG -');
@@ -13,7 +19,7 @@ function Card(props) {
   
   // const { fbPart, igPart } = splitSocialMedia(props.club.SocialMedia);
   return (
-    <div className='bg-white h-40 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0'>
+    <div className='bg-white h-40 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0' onClick={redirect}>
       <div className='w-11/12 font-poppins'>
         <div className="md:text-2xl lg:text-3xl py-3 font-bold">
           {props.club.Name}
