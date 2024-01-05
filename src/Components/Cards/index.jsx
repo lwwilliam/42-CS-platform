@@ -19,7 +19,7 @@ function Card(props) {
   
   // const { fbPart, igPart } = splitSocialMedia(props.club.SocialMedia);
   return (
-    <div className='bg-white h-40 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0' onClick={redirect}>
+    <div className='bg-white h-40 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0 transform transition-all duration-200 hover:-translate-y-2' onClick={redirect}>
       <div className='w-11/12 font-poppins'>
         <div className="md:text-2xl lg:text-3xl py-3 font-bold">
           {props.club.Name}

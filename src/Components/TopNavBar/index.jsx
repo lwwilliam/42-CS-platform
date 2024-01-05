@@ -26,7 +26,7 @@ const TopNavBar = ({ className }) => {
             <img src={yourclubs} className='h-11 sm:h-7' alt="home icon"/>
             <span className='whitespace-nowrap hidden md:flex font-poppins'>Your Clubs</span>
           </button>
-          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/ClubInfo")}>
+          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/AllClubs")}>
             <img src={allclubs} className='h-11 sm:h-7' alt="home icon"/>
             <span className='whitespace-nowrap hidden md:flex font-poppins'>All Clubs</span>
           </button>
