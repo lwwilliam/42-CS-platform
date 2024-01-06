@@ -28,7 +28,7 @@ function ClubInfo() {
   // const [location, setLocation] = useState(false);
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/test`)
+    axios.get(`${BACKEND_URL}/api/googleSheets`)
     .then(response => {
       setInfo(response.data.message);
       // console.log(response.data.message);
