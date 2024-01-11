@@ -8,6 +8,7 @@ function Card(props) {
 
   function redirect() {
     navigate("/Clubhomepage?clubname=" + props.club.Name);
+    window.scrollTo(0, 0)
   };
 
   // const splitSocialMedia = (socialMedia) => {
@@ -19,9 +20,9 @@ function Card(props) {
   
   // const { fbPart, igPart } = splitSocialMedia(props.club.SocialMedia);
   return (
-    <div className='bg-white h-40 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0 transform transition-all duration-200 hover:-translate-y-2' onClick={redirect}>
+    <div className='bg-white h-40 rounded-3xl shadow-lg flex items-center justify-center mb-10 md:mb-0 transform transition-all duration-200 hover:-translate-y-2 cursor-pointer' onClick={redirect}>
       <div className='w-11/12 font-poppins'>
-        <div className="md:text-2xl lg:text-3xl py-3 font-bold">
+        <div className="md:text-2xl lg:text-3xl text-xl py-3 font-bold">
           {props.club.Name}
         </div>
         {/* <div className="flex py-1 font-medium items-center">
