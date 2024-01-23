@@ -1,8 +1,9 @@
 import React from 'react';
 import yourclubs from '../../assets/icons/yourClubs.svg';
 import allclubs from '../../assets/icons/allClubs.svg';
-import home from '../../assets/icons/home.svg';
+// import home from '../../assets/icons/home.svg';
 import logout from '../../assets/icons/logout.svg';
+import faq from '../../assets/icons/faq.svg';
 import { useNavigate } from 'react-router-dom';
 
 const TopNavBar = ({ className }) => {
@@ -30,9 +31,9 @@ const TopNavBar = ({ className }) => {
             <img src={allclubs} className='h-11 sm:h-7' alt="home icon"/>
             <span className='whitespace-nowrap hidden md:flex font-poppins'>All Clubs</span>
           </button>
-          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/Feed")}>
-            <img src={home} className='h-12 sm:h-7' alt="home icon"/>
-            <span className='whitespace-nowrap hidden md:flex font-poppins'>Home</span>
+          <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => redir("/FAQ")}>
+            <img src={faq} className='h-12 sm:h-8' alt="home icon"/>
+            <span className='whitespace-nowrap hidden md:flex font-poppins'>FAQ</span>
           </button>
           <button className='grid grid-rows-1 md:grid-rows-2 px-4 place-items-center' onClick={() => Logout()}>
             <img src={logout} className='h-12 sm:h-7' alt="home icon"/>

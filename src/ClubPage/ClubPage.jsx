@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import axios from "axios";
 
 import Layout from "../Components/layout";
-import Button from "../Components/Button";
+// import Button from "../Components/Button";
 import fb_logo from "../assets/icons/facebook.svg"
 import insta_logo from "../assets/icons/instagram.svg"
 import AnnouncementCard from "../Components/AnnouncementCard";
@@ -25,7 +25,7 @@ function ClubPage() {
   let club_desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/get/${decodedName}`)
+    axios.get(`${BACKEND_URL}/api/getClubData/${decodedName}`)
     .then(response => {
       setClubData(response.data.message);
       splitSocialMedia(response.data.message.SocialMedia)
