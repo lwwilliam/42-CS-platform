@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Components/Navbar';
 import "../Components/components.css";
 import { RightSideContainer } from '../Components/Navbar/NavbarElements';
-import json from './faq.json';
+import json from './faqs.json';
 import Loading from '../Components/LoadingOverlay';
 
 function FAQ() {

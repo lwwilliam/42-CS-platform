@@ -57,7 +57,7 @@ function ClubPage() {
               <button className="w-full md:w-[9rem] h-12 md:h-15 bg-lightmode-blue md:text-xl text-lg font-poppins font-semibold rounded-2xl shadow-lg trasnform hover:scale-110 transition-transform ease-out duration-200" onClick={joinclub}>Join</button>
             </div>
           </div>
-          <div className="py-2 font-poppins font-small text-md md:text-1xl xl:text-2xl">{club_desc}</div>
+          <div className="py-2 font-poppins font-small text-md md:text-1xl xl:text-2xl">{clubData.Description === "Nan" ? club_desc : clubData.Description }</div>
           <div className="py-2">
             <div className="py-2 flex items-center font-poppins font-medium text-sm md:text-lg md:text-1xl">
               <img src={fb_logo} alt="Facebook" className="pr-3 w-10 md:w-16"/>

@@ -3,7 +3,7 @@ import './App.css';
 import Login from './Login/Login';
 import Feed from './Feed/Feed';
 import MyClubs from './MyClubs/MyClubs';
-import FAQ from './FAQ/FAQ';
+import FAQ from './Faq/Faq';
 // import Alerts from './Alerts/Alerts';
 import ClubInfo from './AllClubs/AllClubs';
 import SignUp from './SignUp/SignUp';
