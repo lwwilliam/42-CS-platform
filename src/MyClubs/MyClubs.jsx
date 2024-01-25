@@ -14,7 +14,7 @@ function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
   const key = urlParam.get('code');
   const [objid, setObjid] = useState('');
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [joinedClubsinfo, setJoinedClubsinfo] = useState({
     clubname: [],
     description: [],
@@ -53,8 +53,8 @@ function MyClubs() {
   const id = localStorage.getItem('id');
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 3000)
-    axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
+    // setTimeout(() => setLoading(false), 3000)
+    axios.get(`${BACKEND_URL}/api/user/getUserJoinedClubs?userID=${id}`)
       .then(response => {
         setJoinedClubsinfo(response.data)
       })
