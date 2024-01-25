@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Components/Navbar';
-import Loading from '../Components/LoadingOverlay';
-import "../Components/components.css";
-import { RightSideContainer } from '../Components/Navbar/NavbarElements';
-import { Button, Card } from 'flowbite-react';
 import axios from 'axios';
+
+import "../Components/components.css";
+import Layout from '../Components/layout';
+import MyClubTile from '../Components/MyClubTile';
+import Button from '../Components/Button';
+import SearchBar from '../Components/SearchBar';
+// import Loading from '../Components/LoadingOverlay'
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -12,7 +14,7 @@ function MyClubs() {
   const urlParam = new URLSearchParams(window.location.search);
   const key = urlParam.get('code');
   const [objid, setObjid] = useState('');
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [joinedClubsinfo, setJoinedClubsinfo] = useState({
     clubname: [],
     description: [],
@@ -51,42 +53,56 @@ function MyClubs() {
   const id = localStorage.getItem('id');
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 3000)
-    axios.get(`${BACKEND_URL}/api/joined_clubsinfo/${id}`)
+    // setTimeout(() => setLoading(false), 3000)
+    axios.get(`${BACKEND_URL}/api/user/getUserJoinedClubs?userID=${id}`)
       .then(response => {
-        setJoinedClubsinfo(response.data);
+        setJoinedClubsinfo(response.data)
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-      });  
+      });
   }, [id]);
 
+    // handles the search bar
+  const [query, setQuery] = useState("")
+	const [searchResults, setSearchResults] = useState([])
+
+  // onChange handler returns a synthetic event object
+	const handleSearchInputChange = (event) => {
+    setQuery(event.target.value)
+	};
+
+  // useEffect filters and updates search results based on query change
+	useEffect(() => {
+    setSearchResults(joinedClubsinfo.clubname.filter((club) => {
+			return (club.toLowerCase().includes(query.toLowerCase()))
+		}))
+	}, [query, joinedClubsinfo.clubname])
+
   return (
-    <div>
-      {loading && <Loading/>}
-      <Navbar />
-      <RightSideContainer>
-        <div className='c-header'>My Clubs</div>
-        <div className='flex h-[4vw] bg-transparent'></div>
-        <div className='flex flex-row flex-wrap'>
-          {joinedClubsinfo.clubname.map((clubname, index) => (
-            <div key={index} className='ml-20 mt-10'>
-              <Card className="max-w-md shadow-2xl shadow-indigo-800 border-indigo-800 h-96">
-                  <h4 className="text-2xl font-bold font-serif tracking-wide text-black ml-[0vw] text-center">
-                    {clubname}
-                  </h4>
-                  <p className="text-lg font-semibold text-slate-700 ml-[0vw] h-52 overflow-auto">
-                    {joinedClubsinfo.description[index]}
-                  </p>
-                  <Button gradientDuoTone="purpleToBlue" className="w-1/3 bottom-0 mx-32" href={joinedClubsinfo.redir_link[index]} target="_blank">
-                    Link
-                  </Button>
-              </Card>
-            </div>
-          ))}
-        </div>
-      </RightSideContainer>
-    </div>
+	<>
+		{/* {loading && <Loading />} */}
+		<Layout>
+			<div className='w-full justify-center p-8'>
+				<div className='md:mx-40 md:my-6'>
+					<div className='flex flex-col md:flex-row justify-between'>
+						<div className='flex items-center text-5xl font-poppins font-bold whitespace-nowrap'>Your Clubs</div>
+						<div className='flex flex-col md:flex-row py-2'>
+							<Button text="Filter" />
+							<SearchBar onChange={handleSearchInputChange}/>
+						</div>
+					</div>
+					<div className='flex py-8 items-center'>
+						<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
+							{searchResults.map((clubname, index) => (
+								<MyClubTile key={index} clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
+								))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</Layout>
+	</>
   );
 }
 
