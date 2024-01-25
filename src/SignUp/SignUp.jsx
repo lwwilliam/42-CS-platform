@@ -13,7 +13,7 @@ function SignUp(){
   const decodedName = encodedName ? decodeURIComponent(encodedName) : null;
 
   useEffect(() => {
-    axios.get(`${BACKEND_URL}/api/get/${decodedName}`)
+    axios.get(`${BACKEND_URL}/api/getClubData/${decodedName}`)
     .then(response => {
       setClubForm("https://docs.google.com/forms/d/e/1FAIpQLSe-SIacPNycDuFr_liQrWym-BVtSe1-Q1hLbDqY0L5f-jwfTw/viewform?usp=pp_url&embedded=true&entry.376365941=" + response.data.message.Name.replace("&", "%26").replace(" ", "+"));
     })

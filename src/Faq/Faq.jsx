@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from '../Components/Navbar';
+import React from 'react';
 import "../Components/components.css";
-import { RightSideContainer } from '../Components/Navbar/NavbarElements';
 import json from './faqs.json';
-import Loading from '../Components/LoadingOverlay';
+// import Loading from '../Components/LoadingOverlay';
+import Layout from '../Components/layout';
 
 function FAQ() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000) 
-  }, []);
 
   return (
-    <div>
-      {loading && <Loading/>}
-      <Navbar />
-      <RightSideContainer>
-      <div className='c-header'>FAQ</div>
-      <div className='flex h-[4vw] bg-transparent'></div>
+    <Layout>
       <div className='mx-auto border-black border-2 rounded-xl bg-white bg-opacity-[0.15] w-[80%]'>
         {json.map((edge) => (
           <div key={edge} className='px-7 py-2'>
@@ -27,8 +16,7 @@ function FAQ() {
           </div>
         ))}
       </div>
-      </RightSideContainer>
-    </div>
+    </Layout>
   );
 }
 

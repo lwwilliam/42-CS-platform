@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from './Login/Login';
-import Feed from './Feed/Feed';
+// import Feed from './Feed/Feed';
 import MyClubs from './MyClubs/MyClubs';
 import FAQ from './Faq/Faq';
 // import Alerts from './Alerts/Alerts';
@@ -15,8 +15,8 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* <Route path='/Feed' element={<Feed />} /> */}
         <Route path='/' element={<Login />} />
-        <Route path='/Feed' element={<Feed />} />
         <Route path='/MyClubs' element={<MyClubs />} />
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/AllClubs' element={<ClubInfo />} />
