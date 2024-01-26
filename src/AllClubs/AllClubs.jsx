@@ -23,8 +23,7 @@ function ClubInfo() {
     })
     .catch(error => {
       console.error('Error fetching data:', error);
-    }
-    );
+    });
   }, []);
 
   const filterClubsByName = (query) => {
@@ -60,7 +59,7 @@ function ClubInfo() {
             <button className='bg-[#99DEFF] md:px-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-semibold rounded-2xl shadow-lg mr-10 md:mb-0 mb-3 md:w-auto w-full trasnform hover:scale-110'>Filter</button>
             <div className='relative'>
               <input type="text" id="myInput" placeholder="Search" title="Type in a name" 
-                className='bg-[#E3E1E1] text-black md:pl-10 md:pr-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-medium rounded-3xl shadow-lg w-full border-[#E3E1E1]'
+                className='bg-[#E3E1E1] text-black md:pl-10 pl-5 md:pr-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-medium rounded-3xl shadow-lg w-full border-[#E3E1E1]'
                 onChange={handleSearchInputChange}
               />
               <img src={search} className='absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer md:w-10 w-6' alt="Search Icon"/>

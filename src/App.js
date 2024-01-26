@@ -9,6 +9,7 @@ import ClubInfo from './AllClubs/AllClubs';
 import SignUp from './SignUp/SignUp';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ClubPage from './ClubPage/ClubPage';
+import Home from './Home/Home';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/AllClubs' element={<ClubInfo />} />
         <Route path='/SignUp/*' element={<SignUp />} />
 		    <Route path='/Clubhomepage' element={<ClubPage />} />
+        <Route path="/Home" element={<Home />} />
       </Routes>
     </Router>
   );
