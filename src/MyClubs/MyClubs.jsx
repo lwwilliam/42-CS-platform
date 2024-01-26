@@ -4,9 +4,7 @@ import axios from 'axios';
 import "../Components/components.css";
 import Layout from '../Components/layout';
 import MyClubTile from '../Components/MyClubTile';
-import Button from '../Components/Button';
-import SearchBar from '../Components/SearchBar';
-// import Loading from '../Components/LoadingOverlay'
+import search from '../assets/icons/search.svg';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -80,29 +78,48 @@ function MyClubs() {
 	}, [query, joinedClubsinfo.clubname])
 
   return (
-	<>
-		{/* {loading && <Loading />} */}
-		<Layout>
-			<div className='w-full justify-center p-8'>
-				<div className='md:mx-40 md:my-6'>
-					<div className='flex flex-col md:flex-row justify-between'>
-						<div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6'>Your Clubs</div>
-						<div className='flex flex-col md:flex-row py-2'>
-							<Button text="Filter" />
-							<SearchBar onChange={handleSearchInputChange}/>
+		<>
+			<Layout>
+				<div className="w-full flex flex-col justify-center items-center">
+					<div className="lg:flex w-[80%] py-8 md:py-16 items-center justify-between">
+						<div className="font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6">
+							Your Clubs
+						</div>
+						<div className="md:flex">
+							<button className="bg-[#99DEFF] md:px-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-semibold rounded-2xl shadow-lg mr-10 md:mb-0 mb-3 md:w-auto w-full trasnform hover:scale-110">
+								Filter
+							</button>
+							<div className="relative">
+								<input
+									type="text"
+									id="myInput"
+									placeholder="Search"
+									title="Type in a name"
+									className="bg-[#E3E1E1] text-black md:pl-10 md:pr-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-medium rounded-3xl shadow-lg w-full border-[#E3E1E1]"
+									onChange={handleSearchInputChange}
+								/>
+								<img
+									src={search}
+									className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer md:w-10 w-6"
+									alt="Search Icon"
+								/>
+							</div>
 						</div>
 					</div>
-					<div className='flex py-8 items-center'>
-						<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full'>
+					<div className="flex w-[80%] py-8 items-center">
+						<div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-10 w-full">
 							{searchResults.map((clubname, index) => (
-								<MyClubTile key={index} clubName={clubname.replaceAll('_', ' ')} clubPosition="Committee"/>
-								))}
+								<MyClubTile
+									key={index}
+									clubName={clubname.replaceAll("_", " ")}
+									clubPosition="Committee"
+								/>
+							))}
 						</div>
 					</div>
 				</div>
-			</div>
-		</Layout>
-	</>
+			</Layout>
+		</>
   );
 }
 
