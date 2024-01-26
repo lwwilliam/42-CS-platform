@@ -86,7 +86,7 @@ function MyClubs() {
 			<div className='w-full justify-center p-8'>
 				<div className='md:mx-40 md:my-6'>
 					<div className='flex flex-col md:flex-row justify-between'>
-						<div className='flex items-center text-5xl font-poppins font-bold whitespace-nowrap'>Your Clubs</div>
+						<div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6'>Your Clubs</div>
 						<div className='flex flex-col md:flex-row py-2'>
 							<Button text="Filter" />
 							<SearchBar onChange={handleSearchInputChange}/>

@@ -8,7 +8,8 @@ function FAQ() {
 
   return (
     <Layout>
-      <div className='mx-auto border-black border-2 rounded-xl bg-white bg-opacity-[0.15] w-[80%]'>
+      <div className='mx-auto w-[80%] py-5'>
+			<div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6'>Frequently Asked Questions</div>
         {json.map((edge) => (
           <div key={edge} className='px-7 py-2'>
             <div className='text-[1.2vw] font-bold '>{edge.Question}</div>

@@ -54,7 +54,7 @@ function ClubInfo() {
     {/* {loading && <Loading/>} */}
     <Layout>
       <div className='w-full flex flex-col justify-center items-center'>
-        <div className='lg:flex w-[80%] py-16 items-center justify-between'>
+        <div className='lg:flex w-[80%] py-8 md:py-16 items-center justify-between'>
           <div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6'>All Clubs & Societies</div>
           <div className='md:flex'>
             <button className='bg-[#99DEFF] md:px-16 md:py-4 py-2 md:text-2xl text-xl font-poppins font-semibold rounded-2xl shadow-lg mr-10 md:mb-0 mb-3 md:w-auto w-full trasnform hover:scale-110'>Filter</button>
