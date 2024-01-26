@@ -14,9 +14,9 @@ function FAQ() {
 						<div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6'>Frequently Asked Questions</div>
 							<div className='pt-10'>
 								{json.map((edge) => (
-									<div key={edge} className='px-7 py-2'>
-										<div className='text-[1.2vw] font-bold '>{edge.Question}</div>
-										<div className='text-[1vw] pl-4 '>{edge.Answer}</div>
+									<div key={edge} className='px-7 py-3'>
+										<div className='font-bold pb-2'>{edge.Question}</div>
+										<div className='pl-4'>{edge.Answer}</div>
 									</div>
 								))}
 							</div>
