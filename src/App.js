@@ -1,14 +1,17 @@
 import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
 import './App.css';
-import Login from './Login/Login';
+
 // import Feed from './Feed/Feed';
+// import Alerts from './Alerts/Alerts';
+import Login from './Login/Login';
 import MyClubs from './MyClubs/MyClubs';
 import FAQ from './Faq/Faq';
-// import Alerts from './Alerts/Alerts';
 import ClubInfo from './AllClubs/AllClubs';
 import SignUp from './SignUp/SignUp';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ClubPage from './ClubPage/ClubPage';
+import ContactUs from './ContactUs/ContactUs';
 
 
 function App() {
@@ -21,7 +24,8 @@ function App() {
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/AllClubs' element={<ClubInfo />} />
         <Route path='/SignUp/*' element={<SignUp />} />
-		    <Route path='/Clubhomepage' element={<ClubPage />} />
+		<Route path='/Clubhomepage' element={<ClubPage />} />
+		<Route path='/ContactUs' element = {<ContactUs/>} />
       </Routes>
     </Router>
   );
