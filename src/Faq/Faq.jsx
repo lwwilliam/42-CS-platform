@@ -11,7 +11,7 @@ function FAQ() {
 			<Layout>
 				<div className="w-full flex flex-col justify-center items-center">
 					<div className='w-[80%] py-8 md:py-16 items-center'>
-						<div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6'>Frequently Asked Questions</div>
+						<div className='font-poppins font-bold md:text-5xl text-4xl md:mb-auto mb-6 pb-6'>Frequently Asked Questions</div>
 							<div className='pt-10'>
 								{json.map((edge) => (
 									<div key={edge} className='px-7 py-3'>
