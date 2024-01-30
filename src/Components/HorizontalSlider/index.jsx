@@ -48,7 +48,7 @@ function Slider(props){
       >
         &lt;
       </button>
-      <div className="flex items-center overflow-hidden" ref={elementRef}>
+      <div className="flex items-center overflow-hidden scroll-smooth" ref={elementRef}>
         <div className="gap-x-8 flex" ref={innerRef}>
           {events.map((placement, i) => (
             <HomeEventCard key={i} event={events[i]} index={i}/>
