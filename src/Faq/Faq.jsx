@@ -3,6 +3,7 @@ import "../Components/components.css";
 import json from './faqs.json';
 // import Loading from '../Components/LoadingOverlay';
 import Layout from '../Components/layout';
+import ImailSignIn from '../Components/ImailSignIn';
 
 function FAQ() {
 

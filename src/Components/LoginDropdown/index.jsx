@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
 // import campuslist from './campuslist.json';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
-const LoginDropdown = () => {
+const LoginDropdown = (props) => {
   // const [isOpen, setIsOpen] = useState(false);
   const [authConfig, setAuthConfig] = useState({});
 
@@ -31,6 +32,8 @@ const LoginDropdown = () => {
     window.location.href = authURL;
   };
 
+	let state = ""
+
   function handleclick(name) {
     if (name === "42 Kuala Lumpur") {
       console.log("kuala lumpur")
@@ -38,11 +41,13 @@ const LoginDropdown = () => {
     }
     else if (name === "Sunway University") {
       console.log("sunway")
+
+			props.onLoginStateChange()
     }
   }
 
 	return (
-    <div className='md:w-1/3 bg-white h-2/5 rounded-2xl w-10/12 flex items-center'>
+    <div className={`md:w-1/3 bg-white h-2/5 rounded-2xl w-10/12 flex items-center`}>
       <div className='flex-col flex items-center w-full'>
         <div className='text-center pb-2 text-4xl font-poppins font-bold'>
           Log In
