@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // import axios from 'axios';
 
 import LoginDropdown from '../Components/LoginDropdown';
 import ImailSignIn from '../Components/ImailSignIn';
-import { set } from 'react-hook-form';
 
 const Login = () => {
   const id = localStorage.getItem('id');

@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { propTypes } from 'react-bootstrap/esm/Image';
-// import campuslist from './campuslist.json';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 
@@ -31,8 +29,6 @@ const LoginDropdown = (props) => {
     // Redirect the user to the 42 OAuth authorization URL
     window.location.href = authURL;
   };
-
-	let state = ""
 
   function handleclick(name) {
     if (name === "42 Kuala Lumpur") {
