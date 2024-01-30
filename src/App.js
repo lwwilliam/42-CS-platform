@@ -11,6 +11,7 @@ import FAQ from './Faq/Faq';
 import ClubInfo from './AllClubs/AllClubs';
 import SignUp from './SignUp/SignUp';
 import ClubPage from './ClubPage/ClubPage';
+import Home from './Home/Home';
 import ContactUs from './ContactUs/ContactUs';
 
 
@@ -24,8 +25,9 @@ function App() {
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/AllClubs' element={<ClubInfo />} />
         <Route path='/SignUp/*' element={<SignUp />} />
-		<Route path='/Clubhomepage' element={<ClubPage />} />
-		<Route path='/ContactUs' element = {<ContactUs/>} />
+		    <Route path='/Clubhomepage' element={<ClubPage />} />
+        <Route path="/Home" element={<Home />} />
+      <Route path='/ContactUs' element = {<ContactUs/>} />
       </Routes>
     </Router>
   );

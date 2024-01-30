@@ -1,7 +1,6 @@
 import React from 'react';
 import "../Components/components.css";
 import json from './faqs.json';
-// import Loading from '../Components/LoadingOverlay';
 import Layout from '../Components/layout';
 
 function FAQ() {
