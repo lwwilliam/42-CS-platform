@@ -36,9 +36,8 @@ const LoginDropdown = (props) => {
       handleLoginWith42()
     }
     else if (name === "Sunway University") {
-      console.log("sunway")
-
-			props.onLoginStateChange()
+      console.log("Currently not available")
+			// props.onLoginStateChange()
     }
   }
 

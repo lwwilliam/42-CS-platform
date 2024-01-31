@@ -8,7 +8,6 @@ const BACKEND_URL = process.env.REACT_APP_API_URL;
 function Slider(props){
   const elementRef = useRef(null);
   const innerRef = useRef(null);
-  const [arrowDisable, setArrowDisable] = useState(true);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -29,11 +28,6 @@ function Slider(props){
       if (scrollAmount >= distance) {
         clearInterval(slideTimer);
       }
-      if (element.scrollLeft === 0) {
-        setArrowDisable(true);
-      } else {
-        setArrowDisable(false);
-      }
     }, speed);
   };
 
@@ -42,13 +36,12 @@ function Slider(props){
   return (
     <div className="flex items-center">
       <button
-        className="w-[30px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins mr-3 text-2xl font-bold"
+        className="w-[25px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins mr-[10px] ml-[-5px] text-2xl font-bold"
         onClick={() => {handleHorizantalScroll(elementRef.current, 10, 50, -scrollStep);}}
-        disabled={arrowDisable}
       >
         &lt;
       </button>
-      <div className="flex items-center overflow-x-scroll scroll-smooth " ref={elementRef}>
+      <div className="flex items-center overflow-x-auto scroll-smooth " ref={elementRef}>
         <div className="gap-x-8 flex" ref={innerRef}>
           {events.map((placement, i) => (
             <HomeEventCard key={i} event={events[i]} index={i}/>
@@ -56,7 +49,7 @@ function Slider(props){
         </div>
       </div>
       <button
-        className="w-[30px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins text-black ml-3 text-2xl font-bold"
+        className="w-[25px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins text-black ml-[10px] mr-[-5px] text-2xl font-bold"
         onClick={() => {handleHorizantalScroll(elementRef.current, 10, 50, scrollStep);}}
       >
         &gt;
