@@ -23,11 +23,11 @@ function Footer({ className })
 				</div>
 				<div className="flex flex-row w-[84%] md:w-[76%] items-center justify-between pb-10">
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row items-center justify-center gap-4">
-						<img src={logo_42} className="h-10"/>
-						<img src={logo_sunway_uni} className="h-10"/>
-						<img src={logo_susc} className="h-10 rounded"/>
-						<img src={logo_scsc} className="h-10 rounded"/>
-						<img src={logo_student_life} className="h-10"/>
+						<img src={logo_42} className="h-10" alt="42logo"/>
+						<img src={logo_sunway_uni} className="h-10" alt="SunUlogo"/>
+						<img src={logo_susc} className="h-10 rounded" alt="SUSClogo"/>
+						<img src={logo_scsc} className="h-10 rounded" alt="SCSC logo"/>
+						<img src={logo_student_life} className="h-10" alt="StudentLifelogo"/>
 					</div>
 					<div className="flex flex-col lg:flex-row justify-center items-end lg:items-center space-y-6 lg:space-y-0 lg:space-x-6">
 						<button className="whitespace-nowrap flex font-poppins font-bold" onClick={() => nav("/MyClubs")}>Your Clubs</button>

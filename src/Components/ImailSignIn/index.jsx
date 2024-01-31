@@ -13,7 +13,7 @@ function ImailSignIn({ className, toBackFunction, toSignUpFunction })
 			<div className={`w-10/12 md:w-1/3 bg-white h=3/5 md:h-2/5 rounded-2xl  relative items-center p-5 ${className}`}>
 			<button className='border-2 h-10 w-10 rounded-full font-poppins text-2xl font-semibold absolute left-6 top-6 transform transition-all duration-200 hover:scale-105 cursor-pointer' onClick={toBackFunction}> &lt; </button>
 				<div className='flex-col flex items-center w-full'>
-					<img src={sunway_logo} className="h-16 m-5"/>
+					<img src={sunway_logo} className="h-16 m-5" alt="SunUlogo"/>
 					<div className="w-[80%] h-full pb-5">
 						<input className="w-full h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
 						placeholder="iMail"/>
