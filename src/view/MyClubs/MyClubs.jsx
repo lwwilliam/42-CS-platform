@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import "../Components/components.css";
-import Layout from '../Components/layout';
-import MyClubTile from '../Components/MyClubTile';
-import search from '../assets/icons/search.svg';
+import "../../Components/components.css";
+import Layout from '../../Components/layout';
+import MyClubTile from '../../Components/MyClubTile';
+import search from '../../assets/icons/search.svg';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
 

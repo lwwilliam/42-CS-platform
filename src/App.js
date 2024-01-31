@@ -5,14 +5,14 @@ import './App.css';
 
 // import Feed from './Feed/Feed';
 // import Alerts from './Alerts/Alerts';
-import Login from './Login/Login';
-import MyClubs from './MyClubs/MyClubs';
-import FAQ from './Faq/Faq';
-import ClubInfo from './AllClubs/AllClubs';
-import SignUp from './SignUp/SignUp';
-import ClubPage from './ClubPage/ClubPage';
-import Home from './Home/Home';
-import ContactUs from './ContactUs/ContactUs';
+import Login from './view/Login/Login';
+import MyClubs from './view/MyClubs/MyClubs';
+import FAQ from './view/Faq/Faq';
+import ClubInfo from './view/AllClubs/AllClubs';
+import SignUp from './view/SignUp/SignUp';
+import ClubPage from './view/ClubPage/ClubPage';
+import Home from './view/Home/Home';
+import ContactUs from './view/ContactUs/ContactUs';
 
 
 function App() {

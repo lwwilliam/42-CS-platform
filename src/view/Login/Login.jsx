@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 // import axios from 'axios';
 
-import LoginDropdown from '../Components/LoginDropdown';
-import ImailSignIn from '../Components/ImailSignIn';
-import ImailSignUp from '../Components/ImailSignUp';
+import LoginDropdown from '../../Components/LoginDropdown';
+import ImailSignIn from '../../Components/ImailSignIn';
+import ImailSignUp from '../../Components/ImailSignUp';
 
 const Login = () => {
   const id = localStorage.getItem('id');

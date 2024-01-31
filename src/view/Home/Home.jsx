@@ -1,7 +1,7 @@
 import React from 'react';
-import "../Components/components.css";
-import Layout from '../Components/layout';
-import HorizontalSlider from '../Components/HorizontalSlider';
+import "../../Components/components.css";
+import Layout from '../../Components/layout';
+import HorizontalSlider from '../../Components/HorizontalSlider';
 
 function Home() {
   return (
