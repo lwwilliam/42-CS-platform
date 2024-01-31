@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from "axios";
 
-import Layout from "../Components/layout";
+import Layout from "../../Components/layout";
 // import Button from "../Components/Button";
-import fb_logo from "../assets/icons/facebook.svg"
-import insta_logo from "../assets/icons/instagram.svg"
-import AnnouncementCard from "../Components/AnnouncementCard";
-import EventCard from "../Components/EventCard";
+import fb_logo from "../../assets/icons/facebook.svg"
+import insta_logo from "../../assets/icons/instagram.svg"
+import AnnouncementCard from "../../Components/AnnouncementCard";
+import EventCard from "../../Components/EventCard";
 import { useNavigate } from 'react-router-dom';
 
 const BACKEND_URL = process.env.REACT_APP_API_URL;
