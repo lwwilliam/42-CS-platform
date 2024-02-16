@@ -50,7 +50,7 @@ function ImailSignUp({ className, toSignInFunction })
       cooldown()
     }
 
-  },[buttonDisabled])
+  },[buttonDisabled, codeButtonStyle, codeButtonText, buttonStyleCooldown, buttonStyleDefault, buttonCooldown])
 
   return (
     <>

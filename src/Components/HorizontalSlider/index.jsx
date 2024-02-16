@@ -36,12 +36,12 @@ function Slider(props){
   return (
     <div className="flex items-center">
       <button
-        className="w-[25px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins mr-[10px] ml-[-5px] text-2xl font-bold"
+        className="w-[20px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins mr-[10px] ml-[-5px] text-2xl font-bold"
         onClick={() => {handleHorizantalScroll(elementRef.current, 10, 50, -scrollStep);}}
       >
         &lt;
       </button>
-      <div className="flex items-center overflow-x-auto scroll-smooth " ref={elementRef}>
+      <div className="flex items-center overflow-x-auto scroll-smooth w-[100%]" ref={elementRef}>
         <div className="gap-x-8 flex" ref={innerRef}>
           {events.map((placement, i) => (
             <HomeEventCard key={i} event={events[i]} index={i}/>
@@ -49,7 +49,7 @@ function Slider(props){
         </div>
       </div>
       <button
-        className="w-[25px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins text-black ml-[10px] mr-[-5px] text-2xl font-bold"
+        className="w-[20px] h-[70px] rounded-xl bg-[#D9D9D9] font-poppins text-black ml-[10px] mr-[-5px] text-2xl font-bold"
         onClick={() => {handleHorizantalScroll(elementRef.current, 10, 50, scrollStep);}}
       >
         &gt;
