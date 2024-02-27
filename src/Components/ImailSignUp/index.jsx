@@ -22,9 +22,15 @@ function ImailSignUp({ className, toSignInFunction })
 
   let buttonCooldown = 30
 
+  const [imail , setImail] = useState("")
+  const [password, setPassword] = useState("")
+  const [verificationCode, setVerificationCode] = useState("")
+
   function sendVerificationCode()
   {
-    // send verification code here
+    console.log(imail)
+    console.log(password)
+    console.log(verificationCode)
 
     setButtonDisabled(true)
   }
@@ -50,7 +56,7 @@ function ImailSignUp({ className, toSignInFunction })
       cooldown()
     }
 
-  },[buttonDisabled, codeButtonStyle, codeButtonText, buttonStyleCooldown, buttonStyleDefault, buttonCooldown])
+  },[buttonDisabled])
 
   return (
     <>
@@ -60,12 +66,13 @@ function ImailSignUp({ className, toSignInFunction })
           <div className="w-[80%] h-full">
             <div className="pb-5">
               <input className="w-full h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
-              placeholder="@imail.sunway.edu.my"/>
+              placeholder="@imail.sunway.edu.my" onChange={e => setImail(e.target.value)}/>
             </div>
             <div className="pb-5">
               <input className="w-full h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
               placeholder="Password"
-              type={showPassword ? "text" : "password"}/>
+              type={showPassword ? "text" : "password"}
+              onChange={e => setPassword(e.target.value)}/>
             </div>
             <div className="pb-5">
               <input className="w-full h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
@@ -80,7 +87,8 @@ function ImailSignUp({ className, toSignInFunction })
             </div>
             <div className="pb-5 flex flex-row justify-between">
               <input className="w-[50%] h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
-              placeholder="Verification Code"/>
+              placeholder="Verification Code"
+              onChange={e => setVerificationCode(e.target.value)}/>
               <button className={`w-[30%] h-12 rounded-3xl font-poppins font-medium text-wrap ${codeButtonStyle}`}
               onClick={sendVerificationCode}
 							disabled={buttonDisabled}

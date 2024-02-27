@@ -1,12 +1,12 @@
 import React from "react";
 
 import sunway_logo from "../../assets/images/Sunway_uni_logo.png"
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function ImailSignIn({ className, toBackFunction, toSignUpFunction })
 {
 
-	const nav = useNavigate()
+	// const nav = useNavigate()
 
 	return (
 		<>
