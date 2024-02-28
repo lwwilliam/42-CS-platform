@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 import sunway_logo from "../../assets/images/Sunway_uni_logo.png"
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+const BACKEND_URL = process.env.REACT_APP_API_URL;
 
 function ImailSignIn({ className, toBackFunction, toSignUpFunction })
 {
-
-	// const nav = useNavigate()
+	const navigate = useNavigate()
+	const [imail, setImail] = useState("")
+	const [password, setPassword] = useState("")
+	
+	function signInFunction()
+	{
+		const data = { "imail": imail, "password": password };
+		fetch(`${BACKEND_URL}/api/imailLogin`, {
+			method: 'POST', 
+			headers: {
+				'Content-Type': 'application/json',
+			},
+				body: JSON.stringify(data), 
+			})
+			.then(response => {
+			if (!response.ok) {
+				throw new Error('Login failed');
+			}
+				return response.json();
+			})
+			.then(data => {
+				localStorage.setItem('id', data.objectid);
+				navigate('/MyClubs');
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+		});
+	}
 
 	return (
 		<>
@@ -16,15 +44,22 @@ function ImailSignIn({ className, toBackFunction, toSignUpFunction })
 					<img src={sunway_logo} className="h-16 m-5" alt="SunUlogo"/>
 					<div className="w-[80%] h-full pb-5">
 						<input className="w-full h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
-						placeholder="iMail"/>
+						placeholder="iMail"
+						onChange={e => setImail(e.target.value)}/>
 					</div>
 					<div className="w-[80%] h-full pb-5">
 						<input className="w-full h-12 rounded-md bg-neutral-200 shadow-inner pl-5 font-poppins font-medium"
 						placeholder="Password"
-						type="password"/>
+						type="password"
+						onChange={e => setPassword(e.target.value)}
+						/>
 					</div>
 					<div className="w-[25%] h-14 pb-3">
-						<button className="w-full h-full rounded-3xl bg-lightmode-blue font-poppins font-medium transform transition-all duration-200 hover:scale-105 cursor-pointer">Sign In</button>
+						<button className="w-full h-full rounded-3xl bg-lightmode-blue font-poppins font-medium transform transition-all duration-200 hover:scale-105 cursor-pointer"
+							onClick={signInFunction}
+						>
+							Sign In
+						</button>
 					</div>
 					<div className="flex flex-row justify-center items-center">
 						<label className="font-poppins font-medium text-sm flex pr-2">Don't have an account?</label>
